@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>定时器</title>
+</head>
+<body>
+<script>
+    var _s=0;
+    var time1=setInterval(()=>{
+        _s++;
+        document.body.innerText="正在加载中... "+_s+"s";
+        if(_s>=10){
+            clearInterval(time1);
+        }
+    }, 1000);
+    var time2=setTimeout(()=>{
+        document.write("骗你的 ←_← ");
+    }, 11000);
+</script>
+</body>
+</html>

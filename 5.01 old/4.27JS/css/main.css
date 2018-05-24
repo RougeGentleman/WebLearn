@@ -1,0 +1,24 @@
+*{
+    margin: 0px;
+    padding: 0px;
+    list-style: none;
+}
+.container{
+    width: 360px;
+    overflow: hidden;
+    margin: 100px auto 0px auto;
+    border: 1px solid #000000;
+}
+.container ul{
+    width: 100%;
+}
+.container ul li{
+    float: left;
+    margin-left: 2px;
+}
+.container ul li:first-child{
+    margin-left: 0px;
+}
+.container ul li img{
+    cursor: pointer;
+}

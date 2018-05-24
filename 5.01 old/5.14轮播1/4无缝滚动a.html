@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>轮播学习1</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+            list-style: none;
+        }
+        .container{
+            width: 490px;
+            height: 170px;
+            margin: 20px auto;
+            border: 2px solid skyblue;
+            /*overflow: hidden;*/
+            position: relative;
+        }
+        .content{
+            width: 3430px;
+            height: 170px;
+            position: absolute;
+            /*left: -490px;*/
+        }
+        .content li{
+            float: left;
+            position: relative;
+        }
+        .content li img{
+            width: 490px;
+            height: 170px;
+        }
+        .content li span{
+            position: absolute;
+            display: inline-block;
+            height: 20px;
+            width: 20px;
+            text-align: center;
+            line-height: 20px;
+            font-size: 25px;
+            color: #000;
+            background: #FFFFFF;
+            left: 100px;
+            top: 30px;
+        }
+        .buttons{
+            position: absolute;
+            width: 100%;
+            top: 40%;
+        }
+        .buttons span{
+            width: 30px;
+            height: 50px;
+            text-align: center;
+            line-height: 50px;
+            background: #CDCDCD;
+            color: #FFFFFF;
+            font-size: 30px;
+            cursor: pointer;
+        }
+        .buttons span:hover{
+            background: red;
+        }
+        .buttons #leftButton{
+            float: left;
+            margin-left: -2px;
+        }
+        .buttons #rightButton{
+            float: right;
+            margin-right: -2px;
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <ul class="content">
+        <li class="contentImage"><img  src="img/01.jpg" alt=""><span>1</span></li>
+        <li class="contentImage"><img  src="img/02.jpg" alt=""><span>2</span></li>
+        <li class="contentImage"><img src="img/03.jpg" alt=""><span>3</span></li>
+        <li class="contentImage"><img src="img/04.jpg" alt=""><span>4</span></li>
+        <li class="contentImage"><img src="img/05.jpg" alt=""><span>5</span></li>
+        <li class="contentImage"><img  src="img/01.jpg" alt=""><span>1</span></li>
+    </ul>
+    <p class="buttons">
+        <span id="leftButton">&lt;</span>
+        <span id="rightButton">&gt;</span>
+    </p>
+</div>
+<script>
+    var content = document.getElementsByClassName("content")[0];
+    var contentImages = [].slice.apply(document.getElementsByClassName("contentImage"));
+    var leftButton = document.getElementById("leftButton");
+    var rightButton = document.getElementById("rightButton");
+
+    //定时器变量
+    var timer;
+    //当前显示的图片位置索引
+    var picIndex=0;
+
+    //按钮点击事件
+    leftButton.onclick =function(){
+        //清除定时器
+        clearInterval(timer);
+        //恢复默认索引
+        if(picIndex >= contentImages.length-1){
+            picIndex = 1;
+            //设置整体移动
+            content.style.left=0+"px";
+        }else{
+            //增加索引
+            picIndex++;
+        }
+        //设置动画
+        buttonAnimation(content, (content.offsetLeft - contentImages[picIndex].offsetWidth), 100);
+    };
+
+    rightButton.onclick = function(){
+        //清除定时器
+        clearInterval(timer);
+
+        //恢复默认索引
+        if(picIndex <= 0){
+            picIndex =  contentImages.length-2;
+            //设置整体移动
+            content.style.left=(-contentImages[0].offsetWidth * (contentImages.length-1))+"px";
+        }else{
+            //增加索引
+            picIndex--;
+        }
+        console.log("right:"+contentImages[picIndex].firstChild.getAttribute("src")+" picIndex:"+picIndex);
+        //设置动画
+        buttonAnimation(content, (content.offsetLeft + contentImages[picIndex].offsetWidth), 100);
+    };
+
+    /**
+     * 元素动画函数
+     * @param {object} element 需要设置动画的元素
+     * @param {number} where 移动位置
+     * @param {number} time 总的动画时间, 单位为: ms
+     */
+    function buttonAnimation(element, where, time){
+        //获取需要移动的大小
+        var moveSize = element.offsetLeft - where;
+        //获取每次移动的间距
+        var step = moveSize / time;
+        var index = 0;
+        //设置定时器
+        timer = setInterval(()=>{
+            var total = element.offsetLeft - step;
+            //当前移动位置
+            element.style.left = total + "px";
+
+            // console.log("step:"+step);
+            // console.log(element.style.left);
+            if(step > 0){
+                if(total <= where){
+                    element.style.left = where+"px";
+                    clearInterval(timer);
+                }
+            }else if(step < 0) {
+                if(total >= where){
+                    element.style.left = where+"px";
+                    clearInterval(timer);
+                }
+            }
+        }, 1);
+    }
+
+    /**
+     * 元素动画函数
+     * @param {object} element 需要设置动画的元素
+     * @param {number} where 移动位置
+     * @param {number} time 总的动画时间, 单位为: ms
+     */
+    function animationSimple(element, where, time){
+        //获取需要移动的大小
+        var moveSize = element.offsetLeft - where;
+        //获取每次移动的间距
+        var step = moveSize / time;
+        var index = 0;
+        //设置定时器
+        timer = setInterval(()=>{
+            var total = element.offsetLeft - step;
+            //当前移动位置
+            element.style.left = total + "px";
+
+            console.log("step:"+step);
+            console.log(element.style.left);
+            if(step > 0){
+                if(total <= where){
+                    element.style.left = where+"px";
+                    clearInterval(timer);
+                }
+            }else if(step < 0) {
+                if(total >= where){
+                    element.style.left = where+"px";
+                    clearInterval(timer);
+                }
+            }
+        }, 1);
+    }
+
+</script>
+</body>
+</html>

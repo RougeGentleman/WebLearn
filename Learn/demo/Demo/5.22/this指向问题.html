@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>this指向问题</title>
+    <script>
+        function aa(){
+            console.log(this);
+            return "aa";
+        }
+
+        function bb(fn){
+            fn.apply(this);
+        }
+
+        class Person{
+            constructor(name, fn){
+                this.name = name;
+                this.fn = fn;
+            }
+
+            toString(){
+                return "name: "+name+"\n";
+            }
+
+            callThis(){
+                console.log(this);
+            }
+
+            callOther(){
+                this.fn();
+            }
+        }
+
+        // let person =new Person("lin", function(){
+        //     console.log(this);
+        // });
+
+        // person.callOther();
+        //
+        // let person1 =new Person("lin", ()=>{
+        //     console.log(this);
+        // });
+
+        console.log(new Person("lin", function(){
+           console.log(this);
+        }).callOther());
+
+    </script>
+</head>
+<body>
+
+</body>
+</html>

@@ -1,0 +1,190 @@
+<!DOCTYPE <!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8"/>
+    <title>唯品会 注册</title>
+    <style type="text/css">
+        * {
+            margin: 0px;
+            font-size: 12px;
+            font-family: "微软雅黑";
+        }
+
+        body {
+            background: #fdfbfe;
+        }
+
+        .header {
+            overflow: hidden;
+            background-repeat: no-repeat;
+            width: 1000px;
+            margin-top: 55px;
+            margin-left: 175px;
+        }
+        .header_logo {
+            background: url("img/sprite-hash-29878cd2.png");
+            width: 285px;
+            height: 55px;
+            float: left;
+        }
+        .header_logo_right {
+            background: url("img/sprite-hash-29878cd2.png");
+            background-position: 0px -60px;
+            height: 45px;
+            width: 445px;
+            float: right;
+        }
+
+        .main {
+            background: url("img/14906736174487.jpg");
+            width: 1000px;
+            height: 600px;
+            margin-left: 175px;
+            margin-top: 60px;
+        }
+        .main_user{
+            float: right;
+            width: 300px;
+        }
+        .main_user div{
+            padding-bottom: 20px;
+            width: 300px;
+            float: right;
+        }
+        .main_user_tip{
+            width: 300px;
+            padding: 0px;
+        }
+        .main_user_input_phone{
+            width: 300px;
+        }
+        .main_user_input_sms{
+            width: 170px;
+            float: left;
+        }
+        .main_user_input_send{
+            width: 120px;
+            background: #D0D0D0;
+            float: right;
+            border: 1px solid #D0D0D0;
+            color: #999999;
+        }
+        .main_user_input_password{
+            width: 300px;
+            float: right;
+        }
+        .main_user_input_submit{
+            width: 300px;
+            background: #F10180;
+            height: 48px;
+            color: #ffffff;
+            font-size: 17px;
+        }
+        .main_user_email{
+            float: right;
+        }
+        .main_user_exm{
+            width: 300px;
+            padding-left: 0;
+            height: 20px;
+        }
+        .main_user_exm li{
+            float: left;
+        }
+        .main_user_input_checkbox{
+            height: 18px;
+            width: 18px;
+
+        }
+        .main_user_tip_1 {
+            float: left;
+        }
+        .main_user_tip_3, .main_user_tip_2 {
+            float: right;
+        }
+        .main_user_tip_2 a {
+            color: #F10A83;
+        }
+        .main_user_text_exm{
+            color: #1D94D1;
+        }
+
+        input {
+            background: #ffffff;
+            border: 1px solid #C6C5C6;
+            height: 35px;
+            border-radius: 3px;
+        }
+        ul {
+            list-style: none;
+        }
+        a {
+            text-decoration: none;
+        }
+        ::-webkit-input-placeholder{
+            position: relative;
+            left: 10px;
+        }
+        
+        .footer{
+            clear: both;
+            color: #767074;
+            text-align: center;
+            margin-bottom: 40px;
+        }
+    </style>
+</head>
+<body>
+<div class="header">
+    <div class="header_logo">
+        <img src="img/sprite-hash-29878cd2.png" alt=""/>
+    </div>
+    <div class="header_logo_right"/>
+</div>
+</div>
+<div class="main">
+    <div class="main_user">
+        <div>
+            <ul class="main_user_tip">
+                <li class="main_user_tip_1" id="main_user_text_tip">欢迎注册</li>
+                <li class="main_user_tip_2" id="main_user_text_tip">
+                    <a href="#">直接登录</a>
+                </li>
+                <li class="main_user_tip_3" id="main_user_text_login">已注册</li>
+            </ul>
+        </div>
+        <div>
+            <input class="main_user_input_phone" placeholder="请输入手机号" type="tel"/>
+        </div>
+        <div>
+            <input class="main_user_input_sms" placeholder="请输入手机验证码" type="number"/>
+            <input class="main_user_input_send" value="获取验证码" type="button"/>
+        </div>
+        <div>
+            <input class="main_user_input_password" placeholder="密码由6-20数字，字母和符号组成" type="password"/>
+        </div>
+        <div>
+            <input class="main_user_input_password" placeholder="请再次输入上面的密码" type="password"/>
+        </div>
+        <div>
+            <ul class="main_user_exm">
+                <li><input class="main_user_input_checkbox" type="checkbox"/></li>
+                <li id="main_user_text_tip">我已阅读并接受</li>
+                <li class="main_user_text_exm">《唯品会服务条款》</li>
+                <li id="main_user_text_tip">与</li>
+                <li class="main_user_text_exm">《隐私条款》</li>
+            </ul>
+        </div>
+        <div>
+            <input class="main_user_input_submit" value="立即注册" type="button"/>
+        </div>
+        <div >
+            <a class="main_user_email" id="main_user_text_exm" href="#">通过邮箱注册 ></a>
+        </div>
+    </div>
+</div>
+<div class="footer">
+    <p>Copyright 2008-2017 vip.com, All Right Reserved ICP证：粤 B2-20080329</p>
+</div>
+</body>
+</html>

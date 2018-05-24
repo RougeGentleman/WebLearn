@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>图片懒加载</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+            list-style: none;
+        }
+        #container{
+            width: 500px;
+            margin: 0 auto;
+            position: relative;
+        }
+        li{
+            width: 500px;
+            height: 600px;
+            line-height: 600px;
+            background: yellow;
+            margin-bottom: 10px;
+        }
+        img{
+            width: 500px;
+            vertical-align: middle;
+        }
+    </style>
+</head>
+<body>
+<ul id="container">
+    <li></li>
+    <li></li>
+    <li></li>
+    <li></li>
+</ul>
+<script>
+    let picArray = ["img/img01.jpg", "img/img02.jpg", "img/img03.jpg"];
+    let container = document.getElementById("container");
+    let lis = [].slice.apply(document.getElementsByTagName("li"));
+
+    lis.forEach((item, index, array)=>{
+        if(index === 0) return;
+        let _image = new Image();
+        _image.src = "";
+        _image.setAttribute("data_src", picArray[index-1]);
+
+        item.appendChild(_image);
+    });
+
+    window.onscroll = ()=>{
+        let _top = scroll().top + client().height;
+        console.log("_top:"+_top);
+        //判断当前卷曲是触底li
+        for(let i= 1 ;i < lis.length; i++){
+            if(_top >= getScrollTop(lis[i])){
+                lis[i].firstChild.setAttribute("src", lis[i].firstChild.getAttribute("data_src"));
+            }
+        }
+    };
+
+    //方法： 获取图片到body的卷曲高度
+    function getScrollTop(obj){
+        //表示到body的top高度
+        let top = 0;
+        //判断它的父级是否为body,不是查看上一级，是，返回高度
+        return obj.offsetParent ?  top+ obj.offsetTop + getScrollTop(obj.offsetParent):top + obj.offsetTop;
+    }
+
+    //方法：获取的scroll值
+    function scroll(){
+        return  obj = {
+            'top':window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop || 0,
+            'left':window.pageXOffset ||document.documentElement.scrollLeft || document.body.scrollLeft ||0
+        }
+    }
+
+    //方法：获得可视大小
+    function client(){
+        return  obj = {
+            'width':window.innerWidth|| document.documentElement.clientWidth|| document.body.clientWidth|| 0,
+            'height':window.innerHeight|| document.documentElement.clientHight|| document.body.clientHeight|| 0
+        }
+    }
+
+    //
+
+</script>
+</body>
+</html>

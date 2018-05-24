@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+            list-style: none;
+        }
+        .container{
+            width: 300px;
+            height: 300px;
+            margin: 30px auto;
+            text-align: center;
+        }
+        .smsInput{
+            width: 200px;
+            height: 30px;
+            margin: 0 auto;
+            text-align: center;
+            overflow: hidden;
+        }
+        #inputSMS{
+            width: 130px;
+            height: 28px;
+            border-radius: 0;
+            border: 1px solid aliceblue;
+        }
+        #submitSMS{
+            width: 64px;
+            height: 30px;
+            border: 0;
+            background: red;
+            color: #FFFFFF;
+            position: relative;
+            left: -4px;
+        }
+        #smsContent{
+            text-align: left;
+            margin-top: 20px;
+            height: 250px;
+            border: 1px solid #0d0d0d;
+            overflow: hidden;
+        }
+        p{
+            width: 250px;
+            padding: 5px;
+            margin: 0 auto;
+            position: relative;
+        }
+        p input{
+            position: absolute;
+            right: 0;
+        }
+
+    </style>
+</head>
+<body>
+<div class="container">
+    <div class="smsInput">
+        <input id="inputSMS" type="text">
+        <input id="submitSMS" type="submit" value="提交">
+    </div>
+    <div id="smsContent">
+    </div>
+</div>
+<script>
+    //输入和提交元素
+    var inputSms=document.getElementById("inputSMS");
+    var submitSms=document.getElementById("submitSMS");
+    var smsContent=document.getElementById("smsContent");
+
+    //提交按钮点击事件
+    submitSms.onclick=()=>{
+        //获取输入内容，当内容为空不添加消息
+        var _str=inputSms.value;
+        if((_str.trim().length) === 0){
+            //设置错误输入提示文字
+            inputSms.placeholder="输入不合法！";
+            return;
+        }else{
+            //重置错误输入提示文字
+            inputSms.placeholder="";
+        }
+        //清空输入框内容
+        inputSms.value="";
+        //创建p标签并添加内容
+        var _p = document.createElement("p");
+        _p.innerText = _str+"   "+(new Date().toLocaleDateString());
+        //将新建的元素显示并添加到节点中
+        //创建删除按钮并设置点击事件
+        var deleteButton=document.createElement("input");
+        deleteButton.type="button";
+        deleteButton.value="删除";
+        deleteButton.onclick=()=>{
+            smsContent.removeChild(deleteButton.parentNode);
+        };
+        _p.appendChild(deleteButton);
+        //判断当前父级子是否为0，是则直接添加，否则在之前插入
+        if(smsContent.childNodes.length===0){
+            smsContent.appendChild(_p);
+        }else{
+            smsContent.insertBefore(_p, smsContent.firstChild);
+        }
+    };
+
+</script>
+</body>
+</html>

@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>来回移动</title>
+    <style>
+        #container{
+            width: 300px;
+            height: 100px;
+            position: relative;
+            margin: 50px auto;
+        }
+        #content{
+            width: 100px;
+            height: 100px;
+            line-height: 100px;
+            text-align: center;
+            font-size: 50px;
+            background: skyblue;
+            position: absolute;
+            top: 0;
+            left: 0;
+        }
+    </style>
+</head>
+<body>
+<div id="container">
+    <div id="content"></div>
+</div>
+<script>
+    //获取需要元素
+    var containerElement=document.getElementById("container");
+    var contentElement=document.getElementById("content");
+
+    //获取可移动宽度
+    var moveRange=containerElement.offsetWidth-contentElement.offsetWidth;
+    //已移动的位置索引
+    var isMoveIndex=0;
+    //用于判断是否达到过左右两边
+    var isArrivedLeft=true;
+    var isArrivedRight=false;
+
+    //设置移动定时器
+    setInterval(()=>{
+        //判断当前是否到达左右边
+        if(isArrivedLeft){
+            isMoveIndex++;
+            contentElement.innerText="→";
+        }else if(isArrivedRight){
+            isMoveIndex--;
+            contentElement.innerText="←";
+        }
+        //判断是否满足到达左右两边标准
+        if(isMoveIndex>=moveRange){
+            isArrivedRight=true;
+            isArrivedLeft=false;
+        }else if(isMoveIndex<=0){
+            isArrivedLeft=true;
+            isArrivedRight=false;
+        }
+        //设置移动位置
+        contentElement.style.left=isMoveIndex+"px";
+    }, 5);
+</script>
+</body>
+</html>

@@ -1,0 +1,71 @@
+<!DOCTYPE <!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>课后练习</title>
+    <script>
+        "use strict";
+        //第一题
+        var _i=1;
+        var total=0;
+        while(_i<=100){
+            total+=_i;
+            _i++;
+        }
+        alert(total);
+
+        //第二题
+        var _s="";
+        //上面已定义，复用
+        _i=1;
+        while(_i<=100){
+            if(_i%6==0){
+                _s+=_i+", ";
+            }
+            _i++;
+        }
+        console.log(_s);
+
+        //第三题
+        //上面已定义，复用
+        _i=1;
+        _s="";
+        while(_i<=20){
+            if(_i%11==0){
+                _s+="\n";
+            }
+            _s+="*";
+            _i++;
+        }
+        console.log(_s);
+
+        //第5题
+        var _j=0;
+        _i=1;
+        _s="";
+        for(; _i<=10;_i++){
+            for(_j=_i; _j>0;_j--){
+                _s+="*";
+            }
+            _s+="\n";
+        }
+        console.log(_s);
+
+        //第6题
+        _i=1;
+        _j=1;
+        _s="";
+        for(_i=1;_i<=9;_i++){
+            for(_j=1;_j<=_i;_j++){
+                _s+=_j+"×"+_i+"="+(_i*_j)+" ";
+            }
+            _s+="\n";
+        }
+        console.log(_s);
+    </script>
+</head>
+<body>
+    
+</body>
+</html>

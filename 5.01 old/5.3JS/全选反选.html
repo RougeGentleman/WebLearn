@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>5.3全选反选</title>
+    <style>
+        tr, th, td{
+            border: 1px solid;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+<table>
+    <caption>全选反选</caption>
+    <tr>
+        <th>选择</th>
+        <th colspan="2">内容</th>
+    </tr>
+    <tr>
+        <td><input type="checkbox"/></td>
+        <td colspan="2">这是内容这是内容这是内容这是内容</td>
+    </tr>
+    <tr>
+        <td><input type="checkbox"/></td>
+        <td colspan="2">这是内容这是内容这是内容这是内容</td>
+    </tr>
+    <tr>
+        <td><input type="checkbox"/></td>
+        <td colspan="2">这是内容这是内容这是内容这是内容</td>
+    </tr>
+    <tr>
+        <td><input type="checkbox"/></td>
+        <td colspan="2">这是内容这是内容这是内容这是内容</td>
+    </tr>
+    <tr>
+        <td><input type="checkbox"/></td>
+        <td colspan="2">这是内容这是内容这是内容这是内容</td>
+    </tr>
+    <tr>
+        <td id="selectAll">全选</td>
+        <td id="selectCancel">取消</td>
+        <td id="selectReverse">反选</td>
+    </tr>
+</table>
+<script>
+    //获取操作元素
+    var selectAll=document.getElementById("selectAll");
+    var selectCancel=document.getElementById("selectCancel");
+    var selectReverse=document.getElementById("selectReverse");
+    //获取被操作元素
+    var inputs = [].slice.apply(document.getElementsByTagName("input"));
+
+    //设置操作元素点击事件
+    selectAll.onclick=()=>{
+        toSelectAll();
+        return true;
+    };
+    selectCancel.onclick=()=>{
+        toSelectCancel();
+    };
+    selectReverse.onclick=()=>{
+        toSelectReverse();
+    };
+
+    //全选函数
+    function toSelectAll(){
+        inputs.forEach((item, index, array)=>{
+            item.checked=true;
+        })
+    }
+    //取消选择函数
+    function toSelectCancel(){
+        inputs.forEach((item, index, array)=>{
+            item.checked=false;
+        })
+    }
+    //反选函数
+    function toSelectReverse(){
+        inputs.forEach((item, index, array)=>{
+            if(item.checked){
+                item.checked=false;
+            }else{
+                item.checked=true;
+            }
+        })
+    }
+</script>
+</body>
+</html>

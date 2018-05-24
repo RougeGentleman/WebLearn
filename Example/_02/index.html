@@ -1,0 +1,468 @@
+<!DOCTYPE <!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>金立手机官网</title>
+    <style type="text/css">
+        *{
+            margin: 0px;
+            padding: 0px;
+            font-family: "微软雅黑";
+        }
+        
+        body{
+            text-align: center;
+        }
+        
+        .header{
+            width: 1190px;
+            margin-left: 80px;
+            margin-top: 30px;
+            
+        }
+        .header_logo{
+            float:left;
+        }
+        .header_menu ul{
+            height:51px;
+            line-height: 51px;
+            float: left;
+            margin-left: 200px;
+        }
+        .header_menu ul li{
+            list-style:none;
+            float:left;
+        }
+        .header_menu ul li a{
+            color:black;
+            font-size:17px;
+            margin: 10px;
+            text-decoration-line: none;
+        }
+        .header_menu ul li a:hover{
+            color:#9abad8;
+        }
+        .header_right{
+            float:right;
+        }
+        .header_user{
+            color:#9abad8;
+            font-size:15px;
+        }
+        .header_user a{
+            color:#9abad8;
+            text-decoration-line:none;
+        }
+        .header_user a:hover{
+            color: red;
+        }
+        .header_right_search{
+            margin-top: 8px;
+        }
+        .header_right_search img{
+            position: relative;
+            left: 110px;
+        }
+        .header_right_search_searchInput{
+            position: relative;
+            left: -62px;
+            top: -10px;
+            width: 140px;
+            height: 28px;
+            border: 0px;
+            color:black;
+            
+        }
+        .header_right_search_buttonInput{
+            position: relative;
+            left: -67px;
+            width: 29px;
+            height: 29px;
+            opacity: 0.3;
+            border: 0px;
+        }
+        
+        .nav{
+            clear:both;
+            position: relative;
+            background: #ffffff;
+        }
+        
+        .main{
+            background-color: #eaeaea;
+            padding-top: 25px;
+            height: 2070px;
+        }
+        .main_select{
+            color: #878787;
+            width: 1190px;
+            background:#ffffff;
+            position: relative;
+            left: 80px;
+            text-align: left;
+        }
+        .main_select_form p{
+            /* padding-left: 15px; */
+            padding-top: 35px;
+            padding-bottom:20px;
+            margin: 0px;
+            border-bottom: 1px solid #cccccc;
+            width: 950px;
+            position: relative;
+            left:15px;
+            font-size: 14px;
+        }
+        .main_select_form p:last-child{
+            border-bottom: 0px;
+        }
+        .main_select_form p input{
+            margin-left: 10px;
+            margin-right: 6px;
+        }
+        .main_show{
+            margin-left:80px;
+            padding-top: 15px;
+            width: 1200px;
+            height: 1650px;
+        }
+        .main_show::after{
+            clear: both;
+        }
+        .main_show div{
+            width: 297px;
+            height: 550px;
+            border:1px solid #eaeaea;
+            background: #ffffff;
+            float:left;
+        }
+        .main_show ul{
+            text-align: center;
+        }
+        .main_show ul li{
+            list-style:none;
+        }
+        .show_model{
+            font-weight: bold;
+        }
+        .show_point{
+            color: #cccccc;
+        }
+        .show_price{
+            color: red;
+        }
+        .main_next{
+            width: 1190px;
+            height: 70px;
+            margin-left: 80px;
+            margin-top: 15px;
+            background: #ffffff;
+        }
+        .main_next_num{
+            width: 25px;
+            height: 25px;
+            margin-top: 23px;
+            font-size: 15px;
+            background: #ffffff;
+            border: 1px solid #cccccc
+        }
+        .main_next_next{
+            height: 25px;
+            width: 50px;
+            margin-top: 23px;
+            background: #ffffff;
+            border: 1px solid #cccccc
+        }
+        
+        .footer{
+            clear: both;
+            margin-top:25px;
+            margin-left: 80px;
+        }
+        .footer_other div{
+            width: 280px;
+            height: 44px;
+            padding-bottom: 20px;
+            padding-top: 30px;
+            float: left;
+            text-align: left;
+            border-bottom:1px solid #cccccc;
+        }
+        .footer_other_img{
+            float: left;
+        }
+        .footer_end{
+            clear:both;
+            padding-top: 45px;
+            height: 180px;
+        }
+        .footer_end div{
+            width: 200px;
+            text-align: left;
+            float: left;
+        }
+        .footer_end div ul{
+            list-style: none;
+        }
+        .footer_end div ul li{
+            margin-bottom: 10px;
+        }
+        .footer_end div ul li a{
+            color: black;
+            text-decoration-line:none;
+            font-size: 13px;
+        }
+        .footer_end div ul li a:hover{
+            color:#cccccc;
+        }
+        .footer_end_title{
+            font-weight: bold;
+            font-size: 17px;
+        }
+        
+    </style>
+</head>
+<body>
+    <div class="header">
+        <img class="header_logo" src="img/logo_03.gif" alt="金立手机"/>
+        <div class="header_menu">
+            <ul>
+                <li><a href="#">首页</a></li>
+                <li><a href="#">手机</a></li>
+                <li><a href="#">配件</a></li>
+                <li><a href="#">服务</a></li>
+                <li><a href="#">下载</a></li>
+                <li><a href="#">社区</a></li>
+            </ul>
+        </div>
+        <div class="header_right">
+            <div class="header_user">
+                <a href="#">您好，请登录</a> |
+                <a href="#">注册</a>
+                <img src="img/shoppCar_03.gif" alt="购物车">
+                <a href="#">购物车</a>
+            </div>
+            <div class="header_right_search">
+                <img src="img/search_17.gif" alt="搜索"/>
+                <input class="header_right_search_searchInput" type="search" value="输入搜索的内容"/>
+                <input class="header_right_search_buttonInput"type="button"/>
+            </div>
+        </div>
+    </div>
+    
+    <div class="nav">
+        <img src="img/banner.jpg" alt="金立手机">
+    </div>
+    
+    <div class="main">
+        <div class="main_select">
+            <form class="main_select_form" action="#">
+                <p>手机分类: 
+                    <input type="checkbox" name="" value=""/>全部
+                    <input type="checkbox" name="" value=""/>智能手机
+                    <input type="checkbox" name="" value=""/>功能手机
+                </p>
+                <p>手机外观: 
+                    <input type="checkbox" name="" value=""/>全部
+                    <input type="checkbox" name="" value=""/>触屏
+                    <input type="checkbox" name="" value=""/>直板
+                    <input type="checkbox" name="" value=""/>翻盖
+                </p>
+                <p>手机系列: 
+                    <input type="checkbox" name="" value=""/>全部
+                    <input type="checkbox" name="" value=""/>ELIFE系列
+                    <input type="checkbox" name="" value=""/>天鉴系列
+                    <input type="checkbox" name="" value=""/>风华系列
+                    <input type="checkbox" name="" value=""/>语音王系列
+                    <input type="checkbox" name="" value=""/>+能量系列
+                    <input type="checkbox" name="" value=""/>大屏系列
+                    <input type="checkbox" name="" value=""/>其他系列
+                </p>
+                <p>排列方式:
+                    <input type="checkbox" name="" value=""/>上架时间
+                    <input type="checkbox" name="" value=""/>价格
+                    <input type="checkbox" name="" value=""/>销量
+                </p>
+            </form>
+        </div>
+        <div class="main_show">
+            <div>
+                <ul>
+                    <li><img src="img/list_one_03.gif"/></li><br>
+                    <li class="show_model">ELIFE S5.1</li><br>
+                    <li class="show_point">5.15mm超薄智能手机</li><br>
+                    <li class="show_price">￥1999</li><br>
+                </ul>
+            </div>
+            <div>
+                <ul>
+                    <li><img src="img/elife_03.gif" /></li><br>
+                    <li class="show_model">ELIFE S5.5L</li><br>
+                    <li class="show_point">5.15mm超薄智能手机,至薄4G智能手机</li><br>
+                    <li class="show_price">￥2299</li><br>
+                </ul>
+            </div>
+            <div>
+                <ul>
+                    <li><img src="img/gn715_03.gif" /></li><br>
+                    <li class="show_model">GN715</li><br>
+                        <li class="show_point">5.15mm超薄智能手机</li><br>
+                    <li class="show_price">￥1999</li><br>
+                </ul>
+            </div>
+            <div>
+                <ul>
+                    <li><img src="img/l1_03.gif" /></li><br>
+                    <li class="show_model">ELIFE S5.1</li><br>
+                    <li class="show_point">5.15mm超薄智能手机</li><br>
+                    <li class="show_price">￥1999</li><br>
+                </ul>
+            </div>
+            <div>
+                <ul>
+                    <li><img src="img/l1_03.gif" /></li><br>
+                    <li class="show_model">ELIFE S5.1</li><br>
+                    <li class="show_point">5.15mm超薄智能手机</li><br>
+                    <li class="show_price">￥1999</li><br>
+                </ul>
+            </div>
+            <div>
+                <ul>
+                    <li><img src="img/l1_03.gif" /></li><br>
+                    <li class="show_model">ELIFE S5.1</li><br>
+                    <li class="show_point">5.15mm超薄智能手机</li><br>
+                    <li class="show_price">￥1999</li><br>
+                </ul>
+            </div>
+            <div>
+                <ul>
+                    <li><img src="img/l1_03.gif" /></li><br>
+                    <li class="show_model">ELIFE S5.1</li><br>
+                    <li class="show_point">5.15mm超薄智能手机</li><br>
+                    <li class="show_price">￥1999</li><br>
+                </ul>
+            </div>
+            <div>
+                <ul>
+                    <li><img src="img/l1_03.gif" /></li><br>
+                    <li class="show_model">ELIFE S5.1</li><br>
+                    <li class="show_point">5.15mm超薄智能手机</li><br>
+                    <li class="show_price">￥1999</li><br>
+                </ul>
+            </div>
+            <div>
+                <ul>
+                    <li><img src="img/l1_03.gif" /></li><br>
+                    <li class="show_model">ELIFE S5.1</li><br>
+                    <li class="show_point">5.15mm超薄智能手机</li><br>
+                    <li class="show_price">￥1999</li><br>
+                </ul>
+            </div>
+            <div>
+                <ul>
+                    <li><img src="img/l1_03.gif" /></li><br>
+                    <li class="show_model">ELIFE S5.1</li><br>
+                    <li class="show_point">5.15mm超薄智能手机</li><br>
+                    <li class="show_price">￥1999</li><br>
+                </ul>
+            </div>
+            <div>
+                <ul>
+                    <li><img src="img/l1_03.gif" /></li><br>
+                    <li class="show_model">ELIFE S5.1</li><br>
+                    <li class="show_point">5.15mm超薄智能手机</li><br>
+                    <li class="show_price">￥1999</li><br>
+                </ul>
+            </div>
+            <div>
+                <ul>
+                    <li><img src="img/l1_03.gif" /></li><br>
+                    <li class="show_model">ELIFE S5.1</li><br>
+                    <li class="show_point">5.15mm超薄智能手机</li><br>
+                    <li class="show_price">￥1999</li><br>
+                </ul>
+            </div>
+        </div>
+        <div class="main_next">
+            <input class="main_next_num" type="button" value="1" />
+            <input class="main_next_num" type="button" value="2" />
+            <input class="main_next_num" type="button" value="3" />
+            <input class="main_next_num" type="button" value="4" />
+            <input class="main_next_num" type="button" value="5" />
+            <input class="main_next_next" type="button" value="下一页" />
+        </div>
+    </div>
+    
+    <div class="footer">
+        <div class="footer_other">
+            <div>
+                <img class="footer_other_img" src="img/s1_03.gif"/>
+                7天<br>退货保证
+            </div>
+            <div>
+                <img class="footer_other_img" src="img/s2_03.gif"/>
+                30天<br>退货保证
+            </div>
+            <div>
+                <img class="footer_other_img" src="img/s3_03.gif"/>
+                99元起<br>全场免运费
+            </div>
+            <div>
+                <img class="footer_other_img" src="img/s4_03.gif"/>
+                586家<br>售后服务点
+            </div>
+        </div>
+        <div class="footer_end">
+            <div>
+                <ul>
+                    <li class="footer_end_title">关于金立</li>
+                    <li><a href="#">企业荣誉</a></li>
+                    <li><a href="#">金立体验店</a></li>
+                    <li><a href="#">代理商专区</a></li>
+                    <li><a href="#">加入金立</a></li>
+                    <li><a href="#">联系我们</a></li>
+                </ul>
+            </div>
+            <div>
+                <ul>
+                    <li class="footer_end_title">新闻资讯</li>
+                    <li><a href="#">公司新闻</a></li>
+                    <li><a href="#">媒体报道</a></li>
+                    <li><a href="#">金立月刊</a></li>
+                </ul>
+            </div>
+            <div>
+                <ul>
+                    <li class="footer_end_title">购物指南</li>
+                    <li><a href="#">购物流程</a></li>
+                    <li><a href="#">支付方式</a></li>
+                    <li><a href="#">配送说明及费用</a></li>
+                    <li><a href="#">订单管理</a></li>
+                    <li><a href="#">常见购物问题</a></li>
+                </ul>
+            </div>
+            <div>
+                <ul>
+                    <li class="footer_end_title">售后服务</li>
+                    <li><a href="#">售后政策</a></li>
+                    <li><a href="#">销售服务点</a></li>
+                    <li><a href="#">签收须知</a></li>
+                    <li><a href="#">物流查询</a></li>
+                </ul>
+            </div>
+            <div>
+                <ul>
+                    <li class="footer_end_title">关注我们</li>
+                    <li><a href="#">新浪微博</a></li>
+                    <li><a href="#">腾讯微博</a></li>
+                    <li><a href="#">QQ空间</a></li>
+                    <li><a href="#">加入金立</a></li>
+                </ul>
+            </div>
+            <div>
+                <img src="img/erweima_10.gif"/>
+            </div>
+        </div>
+    </div>
+    
+</body>
+</html>

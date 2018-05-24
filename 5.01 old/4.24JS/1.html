@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>课堂练习</title>
+    <script>
+        var a=Math.pow((23+Math.pow(5, 7))/45, 2);
+        console.log(Math.pow((23+Math.pow(5, 7))/45, 2));
+
+        console.log(Math.random()*9);
+
+        console.log(Math.ceil(prompt("放鸡蛋：请输入一个数字：")/20));
+
+        //题1：
+        if(confirm("题1：您确定退出？")){
+            alert("题1：您已退出");
+        }else{
+            alert("题1：您已取消退出");
+        }
+
+        //题2：
+        var _2=prompt("题2偶数：请输入一个数字："); 
+        if(_2%2==0){
+            console.log("题2："+_2);
+        }else{
+            console.log("题2："+_2+":不是偶数");
+        }
+
+        //题3：
+        var _3=prompt("题3：请输入在20~70之间的数字：");
+        if(_3>=20 && _3<=70){
+            console.log("题3："+_3);
+        }else{
+            console.log("题3："+_3+"不在20~70之间");
+        }
+
+        //题4
+        if(prompt("题4：请输入一个数：")>(Math.random()*99)){
+            console.log("题4：您赢了");
+        }else{
+            console.log("题4：您输了");
+        }
+
+        //题6
+        var a=prompt("题6：请输入一个三位数：");
+        var a_1=a%10;
+        var a_2=(a-a_1)/10%10;
+        var a_3=(a-a_1-a_2*10)/100;
+        console.log("题6："+(a_1+a_2+a_3));
+
+        //判断年龄段
+        var _age=prompt("Age：请输入一个年龄：");
+        if(_age<10){
+            console.log("年龄："+_age+"所处的阶段为幼年");
+        }else if(_age<20 && _age>=10){
+            console.log("年龄："+_age+"所处的阶段为少年");
+        }else if(_age<30 && _age>=20){
+            console.log("年龄："+_age+"所处的阶段为青年");
+        }else if(_age<40 && _age>=30){
+            console.log("年龄："+_age+"所处的阶段为壮年");
+        }else if(_age<50 && _age>=40){
+            console.log("年龄："+_age+"所处的阶段为中年");
+        }else{
+            console.log("年龄："+_age+"所处的阶段为老年");
+        }
+
+        //学生成绩
+        var name=prompt("学生成绩： 请输入姓名");
+        var score=prompt("学生成绩：请输入成绩");
+        var t;
+        if(score<=65){
+            t="差";
+        }else if(score <= 80 && score > 65){
+            t="中";
+        }else if(score > 80){
+            t="优";
+        }
+        if(score==90){
+            console.log(""+name+", "+score+", "+t);
+        }
+        
+    </script>
+</head>
+<body>
+    
+</body>
+</html>

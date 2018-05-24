@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>导航固定</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+            list-style: none;
+        }
+        img {
+            margin: 0 auto;
+            width: 100%;
+            position: static;
+        }
+        #main{
+            width: 1000px;
+            margin-left: auto;
+            margin-right: auto;
+            text-align: center;
+        }
+        #leftMenu{
+            position: absolute;
+            top: 80px;
+            left: 20px;
+        }
+
+        .fixed{
+            position: fixed;
+            top: 0;
+            z-index: 2;
+        }
+        .clear{
+            margin-top: 80px;
+        }
+    </style>
+</head>
+<body>
+<img id="top" src="img/top.png" alt="">
+<img id="nav" src="img/nav.png" alt="">
+<div id="main">
+    <img src="img/main.png" alt="">
+</div>
+<!--<div id="leftMenu">-->
+    <!--<img  src="img/img1.jpg" alt="">-->
+<!--</div>-->
+<script>
+    var topElement = document.getElementById("top");
+    var navElement = document.getElementById("nav");
+    var mainElement = document.getElementById("main");
+
+    window.onscroll = ()=>{
+        if(scroll().top >= topElement.offsetHeight){
+            navElement.className = "fixed";
+            mainElement.className = "clear";
+            console.log(navElement.className);
+        }else{
+            navElement.className = "";
+            mainElement.className = "";
+        }
+    };
+
+    //缓慢动画函数
+    function endSlowerAnimation2(element, where){
+        let step = 0;
+        let now = element.offsetTop;
+        let moveSize = where - now;
+        clearInterval(timer);
+        timer = setInterval(()=>{
+            //获取元素的当前位置
+            now = element.offsetTop;
+            //获得增量
+            if(moveSize > 0){
+                step = Math.ceil((where - now) / 10);
+            }
+            if(moveSize < 0){
+                step = Math.floor((where - now) / 10);
+            }
+            if(now !== where){
+                //设置元素位置
+                element.style.top = (now + step)+"px";
+                console.log("now:"+now+" step:"+step);
+            }else{
+                clearInterval(timer);
+            }
+        }, 30);
+    }
+
+    //封装自己的scroll
+    function scroll(){
+        return  obj = {
+            'top':window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop || 0,
+            'left':window.pageXOffset ||document.documentElement.scrollLeft || document.body.scrollLeft ||0
+        }
+    }
+</script>
+</body>
+</html>

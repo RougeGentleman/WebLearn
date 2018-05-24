@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Arrow Function => 使用</title>
+    <script>
+        // TODO: 链接地址1： https://www.cnblogs.com/hailun/p/6279029.html
+        var x = () => ({foo:1});
+        console.log(x().foo);
+
+        var f = x => x * x;
+        console.log(f(2));
+        // TODO Arrow Function
+        // 本质类型为 函数， 因此使用需以函数的方式调用
+        // TODO: 传递参数：
+        //          a. () => {} 无参
+        //          b. (a, b) => {} 两个参数
+        //          c. (a, b, ...c) => {} 不定参数
+        // TODO: 返回对象
+        //          x => ({foo:1}) 因｛｝冲突，因此需要加上（）
+        // TODO: 在＝> 中　this 指向词法定义域，也就是上下文定义域
+
+    </script>
+</head>
+<body>
+
+</body>
+</html>

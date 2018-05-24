@@ -1,0 +1,215 @@
+*{
+    margin: 0px;
+    padding: 0px;
+}
+.container{
+    /*width: 980px;*/
+    /*height: 600px;*/
+    margin: 15px 25px 30px 25px;
+}
+.header{
+    height: 50px;
+    border-bottom: 1px solid #ecebeb;
+}
+.header > div:first-child{
+    width: 980px;
+    margin:0px auto;
+}
+.header_left, .header_right{
+    height: 50px;
+    line-height: 50px;
+    margin-bottom: 10px;
+}
+.header_left{
+    float: left;
+}
+.header_left img{
+    float: left;
+    width: 137px;
+    height: 46px;
+    margin-right: 10px;
+
+}
+.header_left span{
+    float: left;
+    height: 20px;
+    line-height: 20px;
+    font-size: 18px;
+    color: #666666;
+    padding-left: 10px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    margin-top: 15px;
+    border-left: 1px solid #c4c8c9;
+
+}
+.header_right{
+    float: right;
+    height: 50px;
+    line-height: 50px;
+}
+.header_right input{
+    margin-top: 8px;
+    float: right;
+    width: 64px;
+    height: 32px;
+    background: #f7f7f7;
+    color: #666666;
+    border: 1px solid #dddddd;
+    -webkit-border-radius: 3px;
+    -moz-border-radius: 3px;
+    border-radius: 3px;
+}
+.header_right span{
+    float: right;
+    color: #666666;
+    font-size: 13px;
+}
+/*-----------main----------*/
+.main{
+    width: 980px;
+    margin: 60px auto 0px auto;
+}
+.main_left{
+    float: left;
+    width: 420px;
+    height: 405px;
+}
+.main_left p{
+    height: 40px;
+    width: 420px;
+    margin-bottom: 20px;
+}
+.main_left_login input{
+    float: right;
+    margin-left: 10px;
+    width: 350px;
+    height: 40px;
+    background: #ffffff;
+    border: 1px solid #dddddd;
+}
+::-webkit-input-placeholder{
+    position: relative;
+    left: 10px;
+}
+.main_left_login span{
+    float:right;
+    height: 40px;
+    line-height: 40px;
+    font-size: 14px;
+    color: #666;
+    font-weight: 700;
+}
+.main_left_sms{
+    height: 20px;
+    line-height: 20px;
+}
+.main_left_sms input ,.main_left_sms span{
+    float: right;
+    margin-left: 10px;
+}
+.main_left_sms > input:first-child{
+    background: #f7f7f7;
+    width: 160px;
+    height: 40px;
+    color: #666666;
+    line-height: 40px;
+    -webkit-border-radius: 3px;
+    -moz-border-radius: 3px;
+    border-radius: 3px;
+    border: 1px solid #dddddd;
+}
+.main_left_sms > input+input{
+    background: #ffffff;
+    height: 36px;
+    width: 180px;
+    border: 1px solid #dddddd;
+}
+.main_left_sms span{
+    float:right;
+    height: 40px;
+    line-height: 40px;
+    font-size: 14px;
+    color: #666;
+    font-weight: 700;
+}
+.main_left_exm{
+    font-size: 13px;
+    padding-left: 65px;
+}
+.main_left_exm_a{
+    color: #1a67c8;
+}
+.main_left > p:last-child input{
+    width: 350px;
+    height: 50px;
+    margin-left: 68px;
+    position: relative;
+    top: -20px;
+    color: #ffffff;
+    background: #3e89eb;
+    -webkit-border-radius: 3px;
+    -moz-border-radius: 3px;
+    border-radius: 3px;
+    border: 0px;
+}
+
+
+/*-----------right---------*/
+.main_right{
+    float: right;
+    width: 260px;
+    height: 408px;
+    background: #f5fbff;
+    padding: 10px;
+    border: 1px solid #d1edff;
+}
+
+.main_right_top{
+    height: 32px;
+    line-height: 32px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid #ecf0f3;
+}
+.main_right_top img{
+    float: left;
+}
+.main_right_top span{
+    float: left;
+    height: 32px;
+    line-height: 32px;
+    color: #666666;
+    font-size: 14px;
+    font-weight: bold;
+    margin-left: 5px;
+}
+.main_right_body > p:first-child{
+    margin-top: 20px;
+    margin-bottom: 5px;
+}
+.main_right_body_b{
+    color: #f18300;
+    font-weight: bold;
+    font-size: 16px;
+}
+#main_right_body_b_a{
+    margin-bottom: 20px;
+}
+.main_right_body_a{
+    font-size: 13px;
+    color: #666666;
+}
+.main_right_body_a:last-child{
+    margin-bottom: 30px;
+}
+.main_right > div:last-child{
+    text-align: center;
+}
+.main_right > div:last-child img{
+    width: 170px;
+    height: 170px;
+}
+.main_right > div:last-child p{
+    text-align: center;
+    font-size: 13px;
+}

@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>自动生成li</title>
+    <style>
+        *{
+            padding: 0;
+            margin: 0;
+            list-style: none;
+        }
+        .container{
+            width: 753px;
+            height: 454px;
+            margin: 30px auto;
+            position: relative;
+        }
+        img{
+            position: absolute;
+            top: 0;
+            left: 0;
+        }
+        ul{
+            position: absolute;
+            bottom: 50px;
+            left: 40%;
+            width: 200px;
+            height: 20px;
+            z-index: 6;
+            margin: 0 auto;
+        }
+        li{
+            width: 20px;
+            height: 20px;
+            line-height: 20px;
+            margin-left: 10px;
+            text-align: center;
+            border-radius: 50%;
+            background: red;
+            color: #FFFFFF;
+            border: 0;
+            float: left;
+            box-shadow: 1px 2px 5px 2px #FFCCCC;
+            cursor: pointer;
+        }
+        ul li:first-child{
+            background: yellow;
+            color: #000000;
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <img src="img/11.jpg" alt="">
+    <img src="img/22.jpg" alt="">
+    <img src="img/33.jpg" alt="">
+    <img src="img/44.jpg" alt="">
+    <img src="img/55.jpg" alt="">
+    <img src="img/66.jpg" alt="">
+    <ul>
+    </ul>
+</div>
+<script>
+    //获取所有image
+    var images=[].slice.apply(document.getElementsByTagName("img"));
+    //存放li的容器
+    var parentUl=document.getElementsByTagName("ul")[0];
+    //存放li的数组
+    var liArray=[];
+    //定时器
+    var timer;
+
+    //创建li并添加到父级中
+    for(var i=1; i<=images.length; i++){
+        var _li = document.createElement("li");
+        _li.innerText=""+i;
+        //将li存放到数组中
+        liArray.push(_li);
+        parentUl.appendChild(_li);
+    }
+
+    //设置当前位置索引，用于显示效果
+    var nowIndex=0;
+
+    console.log(liArray.length);
+    liArray.forEach((item, index, array)=>{
+        //设置悬停事件
+        item.onmouseover=()=>{
+            //当鼠标悬停时取消定时器
+            clearInterval(timer);
+            //取消所有悬停效果
+            liArray.forEach((_item, _index, _array)=>{
+                _item.style.background="red";
+                _item.style.color="#FFFFFF";
+            });
+            //设置当前悬停效果
+            item.style.background="yellow";
+            item.style.color="#000000";
+            //设置背景层级
+            //设置所有层级为0
+            images.forEach((_item, _index, _array)=>{_item.style.zIndex="0";});
+            //设置点击选择层级高
+            images[index].style.zIndex="3";
+            nowIndex=index;
+        };
+        //设置鼠标离开事件
+        item.onmouseleave=()=>{
+            //鼠标离开是重新开始定时器
+            autoPlay();
+        };
+    });
+
+    function autoPlay(){
+        //自动播放定时器
+        timer=setInterval(()=>{
+            nowIndex++;
+            if(nowIndex === images.length) nowIndex=0;
+            images.forEach((_item, _index, _array)=>{_item.style.zIndex="0";});
+            //设置点击选择层级高
+            images[nowIndex].style.zIndex="3";
+            //设置底部按钮颜色
+            //取消所有底部效果
+            liArray.forEach((_item, _index, _array)=>{
+                _item.style.background="red";
+                _item.style.color="#FFFFFF";
+            });
+            //设置当前悬停效果
+            liArray[nowIndex].style.background="yellow";
+            liArray[nowIndex].style.color="#000000";
+        },1000);
+    }
+    //开始自动播放
+    autoPlay();
+</script>
+</body>
+</html>

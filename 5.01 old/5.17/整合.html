@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>导航固定</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+            list-style: none;
+        }
+        #top img, #nav img, #main img{
+            margin: 0 auto;
+            width: 100%;
+            position: static;
+        }
+        #main{
+            width: 1000px;
+            margin-left: auto;
+            margin-right: auto;
+            text-align: center;
+        }
+        .leftMenu{
+            position: absolute;
+            top: 80px;
+            left: 20px;
+            z-index: 5;
+        }
+        .toTop{
+            position: fixed;
+            bottom: 50px;
+            right: 30px;
+        }
+
+        .fixed{
+            position: fixed;
+            top: 0;
+        }
+        .clear{
+            margin-top: 80px;
+        }
+        #show{
+            opacity: 1;
+            display: block;
+        }
+        #hidden{
+            opacity: 0;
+            display: none;
+        }
+    </style>
+</head>
+<body>
+<div id="top"><img src="img/top.png" alt=""></div>
+<div id="nav"><img src="img/nav.png" alt=""></div>
+<div id="main">
+    <img src="img/main.png" alt="">
+</div>
+<div class="leftMenu">
+    <img  src="img/img1.jpg" alt="">
+</div>
+<div id="hidden" class="toTop">
+    <img src="img/img2.jpg" alt="">
+</div>
+<script>
+    let topElement = document.getElementById("top");
+    let navElement = document.getElementById("nav");
+    let mainElement = document.getElementById("main");
+    let leftElement = document.getElementsByClassName("leftMenu")[0];
+    let toTopElement = document.getElementsByClassName("toTop")[0];
+
+    //左边跟随定时器
+    let timer;
+    //右臂那跟随定时器
+    let timer2;
+
+    window.onscroll = ()=>{
+        if(scroll().top >= topElement.offsetHeight){
+            navElement.className = "fixed";
+            mainElement.className = "clear";
+            //出现小火箭
+            toTopElement.id = "show";
+            leftElement.id = "show";
+
+            leftAnimation(leftElement, scroll().top+80);
+        }else{
+            navElement.className = "";
+            mainElement.className = "";
+            //隐藏下火箭
+            toTopElement.id = "hidden";
+            leftElement.id = "hidden";
+        }
+    };
+
+    //设置小火箭点击事件
+    toTopElement.onclick = ()=>{
+        rightAnimation(window, 0);
+    };
+
+    //缓慢动画函数
+    function leftAnimation(element, where){
+        let step = 0;
+        let now = element.offsetTop;
+        let moveSize = where - now;
+        if(timer){ clearInterval(timer); }
+        timer = setInterval(()=>{
+            //获取元素的当前位置
+            now = element.offsetTop;
+            //获得增量
+            if(moveSize > 0 ){
+                step = Math.ceil((where - now) / 10);
+            }
+            if(moveSize < 0 ){
+                step = Math.floor((where - now) / 10);
+            }
+            if(now !== where){
+                //设置元素位置
+                element.style.top = (now + step)+"px";
+            }else{
+                clearInterval(timer);
+            }
+        }, 30);
+    }
+
+    //缓慢动画函数
+    function rightAnimation(element, where){
+        let step = 0;
+        let now = scroll().top;
+        let moveSize = where - now;
+        if(timer2 != null){ clearInterval(timer2); }
+        timer2 = setInterval(()=>{
+            //获取元素的当前位置
+            now = scroll().top;
+            //获得增量
+            if(moveSize > 0 ){
+                step = Math.ceil((where - now) / 10);
+            }
+            if(moveSize < 0 ){
+                step = Math.floor((where - now) / 10);
+            }
+            if(now !== where){
+                //设置元素位置
+               element.scrollTo(0, (now+step));
+            }else{
+                clearInterval(timer2);
+            }
+        }, 30);
+    }
+
+    //封装自己的scroll
+    function scroll(){
+        return  obj = {
+            'top':window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop || 0,
+            'left':window.pageXOffset ||document.documentElement.scrollLeft || document.body.scrollLeft ||0
+        }
+    }
+</script>
+</body>
+</html>

@@ -1,0 +1,29 @@
+<!DOCTYPE <!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>4.26课后作业</title>
+    <script>
+        //点名册
+        var nameArray=['唐子健 ','张健','马健','王翰林','易东进','王信','王家祥','杜荣鑫',
+                       '刘士鹏','徐磊','吴强','钱杨','包国刚','柯鹏','夏连','涂朝猛','章伟超',
+				       '张寒','俞彭威','罗扬扬','张泰山','林波','董祺','汤才全'];
+        document.write(nameArray[Math.round(Math.random()*23)]);
+
+        //9*9乘法表
+        var _i=1;
+        var _j=1;
+        var _s="";
+        for(_i=1;_i<=9;_i++){
+            for(_j=1;_j<=_i;_j++){
+                _s+=_j+"×"+_i+"="+(_i*_j)+" ";
+            }
+            _s+="\n";
+        }
+        console.log(_s);
+    </script>
+</head>
+<body>
+    
+</body>
+</html>

@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Animation 学习</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+            list-style: none;
+        }
+        .container{
+            width: 50px;
+            height: 50px;
+            margin: 100px auto;
+            position: relative;
+            cursor: pointer;
+        }
+        .c1, .c2{
+            float: left;
+            width: 50px;
+            height: 2px;
+            margin: 5px 0;
+            background: #000000;
+            position: relative;
+            top: 15px;
+        }
+
+    </style>
+</head>
+<body>
+<div class="container">
+    <span class="c1"></span>
+    <span class="c2"></span>
+</div>
+<div>
+    <ul>
+        <li>1</li>
+        <li>2</li>
+        <li>3</li>
+        <li>4</li>
+        <li>5</li>
+    </ul>
+</div>
+<script>
+    var isClicked=false;
+    var spans=document.getElementsByTagName("span");
+    var container=document.getElementsByClassName("container")[0];
+    container.onclick=function(){
+
+        if(isClicked==false){
+            spans[0].style.transform="translateY(6px)rotate(-45deg)";
+            spans[0].style.transition="all 500ms";
+            spans[1].style.transform="translateY(-6px) rotate(45deg)";
+            spans[1].style.transition="all 500ms";
+            isClicked=true;
+        }else{
+            spans[0].style.transform="translateY(0px)rotate(0deg)";
+            spans[0].style.transition="all 500ms";
+            spans[1].style.transform="translateY(0px) rotate(0deg)";
+            spans[1].style.transition="all 500ms";
+            isClicked=false;
+        }
+    }
+</script>
+</body>
+</html>

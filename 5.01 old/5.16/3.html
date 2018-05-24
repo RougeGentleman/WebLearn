@@ -1,0 +1,164 @@
+<!DOCTYPE <!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>火箭返航</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+            list-style: none;
+        }
+        img{
+            position: fixed;
+            bottom: 50px;
+            right: 30px;
+            transition: all 100ms ease-in;
+        }
+        .show{
+            opacity: 1;
+            display: block;
+        }
+        .hidden{
+            opacity: 0;
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <ul>
+        <img class="hidden" src="img/img1.jpg" alt="">
+        <li>aaaaaaaaaaaa</li>
+        <li>aaaaaaaaaaaa</li>
+        <li>aaaaaaaaaaaa</li>
+        <li>aaaaaaaaaaaa</li>
+        <li>aaaaaaaaaaaa</li>
+        <li>aaaaaaaaaaaa</li>
+        <li>aaaaaaaaaaaa</li>
+        <li>aaaaaaaaaaaa</li>
+        <li>aaaaaaaaaaaa</li>
+        <li>aaaaaaaaaaaa</li>
+        <li>aaaaaaaaaaaa</li>
+        <li>aaaaaaaaaaaa</li>
+        <li>aaaaaaaaaaaa</li>
+        <li>aaaaaaaaaaaa</li>
+        <li>aaaaaaaaaaaa</li>
+        <li>aaaaaaaaaaaa</li>
+        <li>aaaaaaaaaaaa</li>
+        <li>aaaaaaaaaaaa</li>
+        <li>aaaaaaaaaaaa</li>
+        <li>aaaaaaaaaaaa</li>
+        <li>aaaaaaaaaaaa</li>
+        <li>aaaaaaaaaaaa</li>
+        <li>aaaaaaaaaaaa</li>
+        <li>aaaaaaaaaaaa</li>
+        <li>aaaaaaaaaaaa</li>
+        <li>aaaaaaaaaaaa</li>
+        <li>aaaaaaaaaaaa</li>
+        <li>aaaaaaaaaaaa</li>
+        <li>aaaaaaaaaaaa</li>
+        <li>aaaaaaaaaaaa</li>
+        <li>aaaaaaaaaaaa</li>
+        <li>aaaaaaaaaaaa</li>
+        <li>aaaaaaaaaaaa</li>
+        <li>aaaaaaaaaaaa</li>
+        <li>aaaaaaaaaaaa</li>
+        <li>aaaaaaaaaaaa</li>
+        <li>aaaaaaaaaaaa</li>
+        <li>aaaaaaaaaaaa</li>
+        <li>aaaaaaaaaaaa</li>
+        <li>aaaaaaaaaaaa</li>
+        <li>aaaaaaaaaaaa</li>
+        <li>aaaaaaaaaaaa</li>
+        <li>aaaaaaaaaaaa</li>
+        <li>aaaaaaaaaaaa</li>
+        <li>aaaaaaaaaaaa</li>
+        <li>aaaaaaaaaaaa</li>
+        <li>aaaaaaaaaaaa</li>
+        <li>aaaaaaaaaaaa</li>
+        <li>aaaaaaaaaaaa</li>
+        <li>aaaaaaaaaaaa</li>
+    </ul>
+<script>
+    var imgElement = document.getElementsByTagName("img")[0];
+    var timer;
+    var flyIsShow = false;
+
+    imgElement.onclick = ()=>{
+        endSlowerAnimation(document.body, 0);
+        // opacityAnimation(imgElement,true);
+    };
+
+    window.onscroll = function(){
+        //当滚动到200出现图片
+        if(scroll().top > 200){
+            imgElement.className = "show";
+        }else{
+
+            imgElement.className = "hidden";
+        }
+	};
+	//封装自己的scroll
+	function scroll(){
+		return  obj = {
+			'top':window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop || 0,
+			'left':window.pageXOffset ||document.documentElement.scrollLeft || document.body.scrollLeft ||0
+		}
+    }
+    
+    //缓慢动画函数
+    function endSlowerAnimation(element, where){
+        var step = 0;
+        var now = scroll().top;
+        console.log(typeof now);
+        var moveSize = where - now;
+        //清除定时器
+        if(timer != null){clearInterval(timer);}
+        timer = setInterval(()=>{
+            //获取元素的当前位置
+            //获得增量
+            now = scroll().top;
+            if(moveSize > 0){
+                step = Math.ceil((where - now) / 10);
+            }
+            if(moveSize < 0){
+                step = Math.floor((where - now) / 10);
+            }
+            if(now !== where){
+                //设置元素位置
+                element.scrollTo(0, (now+step));
+            }else{
+                clearInterval(timer);
+            }
+        }, 30);
+    }
+
+    //
+    function opacityAnimation(element, status){
+        var  _inde;
+        if(status){
+            element.style.opacity = "1";
+            _index = 0;
+        }else{
+            element.style.opacity = "0";
+            _index = 0;
+        }
+        var timer = setInterval(()=>{
+            status === true ? _index -= 0.01 : _index += 0.01;
+            element.style.opacity = _index+"";
+            if(status){
+                if(_index === 0){
+                    clearInterval(timer);
+                    element.className = "hidden";
+                }
+            }else{
+                if(_index === 1){
+                    clearInterval(timer);
+                }
+            }
+        }, 10);
+    }
+
+</script>
+</body>
+</html>

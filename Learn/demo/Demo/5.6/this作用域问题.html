@@ -1,0 +1,73 @@
+<!DOCTYPE <!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>this作用域问题</title>
+    <script>
+        var name="global";
+        // var person={
+        //     name:"one person",
+        //     age: 12,
+        //     company:{
+        //         ad:"company address",
+        //         name:this.name,
+        //         getAd:function(){
+        //             return this.ad;
+        //         },
+        //         getPerson:function(){
+        //             return this.name;
+        //         }
+        //     },
+        //     getName:function(){
+        //         return this.name;
+        //     },
+        //     getAge:function(){
+        //         return this.age;
+        //     },
+        //     setFriend:function(f){
+        //         this.f=f;
+        //     }
+        //
+        // };
+        // console.log(person.company.getPerson());
+
+
+        function Company(){
+            return function(){
+                return this.name;
+            }
+        }
+        function Person(){
+            this.name="one person";
+            this.age=12;
+            this.company=Company;
+            this.getName=function(){
+                return this.name;
+            };
+            this.getAge=function(){
+                return this.age;
+            }
+        }
+        var person=new Person();
+        console.log(person);
+        // // Person.prototype=new Company(Person);
+        //
+        // function outer(){
+        //     return function(a,b){
+        //         if(a>b){
+        //             return a;
+        //         }else{
+        //             return b;
+        //         }
+        //     }
+        // }
+        // var max=outer();
+        // console.log(max(1,5));
+        // console.log(max);
+    </script>
+</head>
+<body>
+    
+</body>
+</html>

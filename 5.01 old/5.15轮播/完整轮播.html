@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>轮播学习1</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+            list-style: none;
+        }
+        .container{
+            width: 490px;
+            height: 170px;
+            margin: 20px auto;
+            border: 2px solid skyblue;
+            overflow: hidden;
+            position: relative;
+        }
+        .content{
+            width: 3430px;
+            height: 170px;
+            position: absolute;
+        }
+        .content li{
+            float: left;
+            position: relative;
+            cursor: pointer;
+        }
+        .content li img{
+            width: 490px;
+            height: 170px;
+        }
+        .content li span{
+            position: absolute;
+            display: inline-block;
+            height: 20px;
+            width: 20px;
+            text-align: center;
+            line-height: 20px;
+            font-size: 25px;
+            color: #000;
+            background: #FFFFFF;
+            left: 100px;
+            top: 30px;
+        }
+        .midContent{
+            position: absolute;
+            width: 100%;
+            top: 40%;
+        }
+        .midContent span{
+            width: 30px;
+            height: 50px;
+            text-align: center;
+            line-height: 50px;
+            background: #CDCDCD;
+            color: #FFFFFF;
+            font-size: 30px;
+            cursor: pointer;
+        }
+        .midContent span:hover{
+            background: red;
+        }
+        .midContent #leftButton{
+            float: left;
+            margin-left: -2px;
+        }
+        .midContent #rightButton{
+            float: right;
+            margin-right: -2px;
+        }
+
+        .buttons{
+            position: absolute;
+            bottom: 20px;
+            right: 50px;
+        }
+        .buttons li{
+            float: left;
+            width: 20px;
+            height: 20px;
+            text-align: center;
+            line-height: 20px;
+            background: #FFFFFF;
+            color: #000000;
+            margin-right: 5px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <ul class="content">
+        <li class="contentImage"><img  src="img/01.jpg" alt=""></li>
+        <li class="contentImage"><img  src="img/02.jpg" alt=""></li>
+        <li class="contentImage"><img src="img/03.jpg" alt=""></li>
+        <li class="contentImage"><img src="img/04.jpg" alt=""></li>
+        <li class="contentImage"><img src="img/05.jpg" alt=""></li>
+        <li class="contentImage"><img  src="img/01.jpg" alt=""></li>
+    </ul>
+
+    <ul class="buttons">
+    </ul>
+    <p class="midContent">
+        <span id="leftButton">&lt;</span>
+        <span id="rightButton">&gt;</span>
+    </p>
+</div>
+<script>
+    var content;
+    var contentImages;
+    var leftButton;
+    var rightButton;
+    var buttonContainer;
+    var buttons = [];
+
+    //定时器变量
+    var animationTimer;
+    //自动轮播定时器
+    var timer;
+    //当前显示的图片位置索引
+    var picIndex=0;
+
+    window.onload = pre;
+
+    //准备函数
+    function pre(){
+        content = document.getElementsByClassName("content")[0];
+        contentImages = [].slice.apply(document.getElementsByClassName("contentImage"));
+        leftButton = document.getElementById("leftButton");
+        rightButton = document.getElementById("rightButton");
+        buttonContainer = document.getElementsByClassName("buttons")[0];
+        buttons = [];
+
+        //生成li
+        //获取图片数量并添加button
+        for(var i=0; i<contentImages.length-1; i++){
+            //创建li,并添加里面span文字
+            var _li = document.createElement("li");
+            _li.className = "button";
+            var _span = document.createElement("span");
+            _span.innerText = (i+1)+"";
+            _li.appendChild(_span);
+            buttonContainer.appendChild(_li);
+            //将生成的li添加到buttons数组中
+            buttons.push(_li);
+        }
+
+        setEvents();
+
+        //开始自动轮播
+        autoPlay();
+    }
+
+    function setEvents(){
+        //下移按钮点击事件
+        leftButton.onclick =function(){
+            //清楚自动轮播定时器
+            clearInterval(timer);
+            toPrevious();
+        };
+
+        //上移按钮点击事件
+        rightButton.onclick = function(){
+            //清楚自动轮播定时器
+            clearInterval(timer);
+            toNext();
+        };
+
+        //按钮点击事件
+        buttons.forEach((item, index, array)=>{
+            if(index === 0){  setButtonStyle(array, 0)}
+            item.onclick = ()=>{
+                setButtonStyle(buttons, index, "auto");
+                //清除定时器
+                clearInterval(animationTimer);
+                clearInterval(timer);
+                //设置动画
+                buttonAnimation(content, -contentImages[index].offsetLeft, 200);
+                //设置当前位置索引
+                picIndex = index;
+            };
+        });
+
+        content.onmouseover = ()=>{
+            clearInterval(timer);
+            console.log("到达这里了");
+        };
+        content.onmouseout = ()=>{
+            autoPlay();
+        };
+    }
+
+    //设置自动轮播
+    function autoPlay(){
+        timer = setInterval(()=>{
+            toNext();
+        }, 2000);
+    }
+
+    //该方法用于设置底部按钮背景色
+    function setButtonStyle(array, index, where){
+        //设置所有背景为默认：白色
+        array.forEach((_item, _index, _array)=>{
+            _item.style.background="#FFFFFF";
+            _item.style.color = "#000000";
+        });
+        //设置点击背景色
+        array[index].style.background = "red";
+        array[index].style.color = "#FFFFFF";
+
+    }
+
+    //上移函数
+    function toPrevious(){
+        //清除定时器
+        clearInterval(animationTimer);
+        //判断是否需要重置位置
+        if(picIndex <= 0){
+            picIndex =  contentImages.length-2;
+            //设置整体移动
+            content.style.left=(-contentImages[0].offsetWidth * (contentImages.length-1))+"px";
+        }else{
+            //增加索引
+            picIndex--;
+        }
+        //设置底部按钮样式
+        setButtonStyle(buttons, picIndex, "previous");
+        //设置动画
+        buttonAnimation(content, (content.offsetLeft + contentImages[picIndex].offsetWidth), 100);
+    }
+
+    //下移函数
+    function toNext(){
+        //清除定时器
+        clearInterval(animationTimer);
+        //判断是否需要重置位置
+        if(picIndex >= contentImages.length-1){
+            picIndex = 1;
+            //设置整体移动
+            content.style.left="0px";
+        }else{
+            //增加索引
+            picIndex++;
+            //设置底部按钮样式
+        }
+        if(picIndex === contentImages.length-1){
+            setButtonStyle(buttons, 0, "next");
+        }else{
+            setButtonStyle(buttons, picIndex, "next");
+        }
+        //设置动画
+        buttonAnimation(content, (content.offsetLeft - contentImages[picIndex].offsetWidth), 100);
+    }
+
+    /**
+     * 元素动画函数
+     * @param {object} element 需要设置动画的元素
+     * @param {number} where 移动位置
+     * @param {number} time 总的动画时间, 单位为: ms
+     */
+    function buttonAnimation(element, where, time){
+        //获取需要移动的大小
+        var moveSize = element.offsetLeft - where;
+        //获取每次移动的间距
+        var step = moveSize / time;
+        var index = 0;
+        //设置定时器
+        animationTimer = setInterval(()=>{
+            var total = element.offsetLeft - step;
+            //当前移动位置
+            element.style.left = total + "px";
+            if(step > 0){
+                if(total <= where){
+                    element.style.left = where+"px";
+                }
+            }else if(step < 0) {
+                if(total >= where){
+                    element.style.left = where+"px";
+                }
+            }
+        }, 1);
+    }
+
+</script>
+</body>
+</html>

@@ -1,0 +1,138 @@
+
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+        .box {
+            width: 322px;
+            position: fixed;
+            bottom: 0;
+            right: 0;
+            overflow: hidden;
+            opacity: 0.8;
+        }
+
+        span {
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 30px;
+            height: 20px;
+            cursor: pointer;
+        }
+        .bd{
+        	height: 101px;
+        }
+        .hd{
+        	height: 244px;
+        }
+    </style>
+    
+</head>
+<body>
+<div class="box" id="box">
+    <span id="closeButton"></span>
+    <div class="hd" id="headPart">
+        <img src="img/t.jpg" />
+    </div>
+    <div class="bd" id="bottomPart">
+        <img src="img/b.jpg" />
+    </div>
+</div>
+</body>
+</html>
+<script>
+	var box = document.getElementById('box');//获取大盒子
+	var colseBut = document.getElementById('closeButton');//关闭按钮
+	var bottomHeight = document.getElementById('bottomPart').offsetHeight;
+	 
+	var timer;
+	colseBut.onclick = function(){
+		animate(box,obj1,function(){
+			animate(box,obj2,function(){
+				box.style.display = 'none';
+			})
+		})
+	};
+	var obj1={
+		'height':244,
+		'opacity':0
+	};
+	var obj2 = {
+		'width':0,
+		/*'opacity':0*/
+	};
+	//
+	/*var obj1={
+		'bottom':-101
+	}
+	var obj2 = {
+		'right':-322
+	}*/
+		function animate(obj,json1,fn){
+			//设置一个开关
+			clearInterval(timer);
+			timer = setInterval(function(){
+				var tag = true;
+				for(var k in json1){//k-->left top width opacity(0-1)
+						if(k == 'opacity'){//1-0
+							var leader = Number(getCSSstyle(box,null,k));//d当前位置0
+							var step = 0;
+							var target = json1[k];//200
+							//缓动公式
+							//step = （target - leader）/10
+							//判断步数的正负
+							if(target>leader){//正的步数  1
+								 step = Math.ceil((target*1000 - leader*1000)/10);
+							}
+							if(target<leader){//负的步数  //-0.0000222222   /-1
+								 step = Math.floor((target*1000 - leader*1000)/10);
+							}
+							/*step>0?Math.ceil(step):Math.floor(step);*/
+							/*var target = 200;*/
+							leader = leader+(step/1000);
+							console.log(leader+'不透明度');
+							obj.style[k] = leader;
+						}else{
+							var leader = parseInt(getCSSstyle(box,null,k));//d当前位置0
+							var step = 0;
+							var target = json1[k];//200
+							//缓动公式
+							//step = （target - leader）/10
+							//判断步数的正负
+							if(target>leader){//正的步数  1
+								 step = Math.ceil((target - leader)/10);
+							}
+							if(target<leader){//负的步数  //-0.0000222222   /-1
+								 step = Math.floor((target - leader)/10);
+							}
+							/*step>0?Math.ceil(step):Math.floor(step);*/
+							/*var target = 200;*/
+							leader = leader+step;//10 20----200
+							obj.style[k] = leader+'px';
+							}
+						
+							if(leader!=target){//200 200 5 
+								tag = false;
+							}
+					}
+					
+				if(tag){
+						clearInterval(timer);
+						fn&&fn();  
+					}
+				console.log('我是定时器')
+			},50)
+			/*console.log(leader)*/
+		}
+		//封装获取某个元素的某个css样式值
+		function getCSSstyle(obj,wobj,sty){
+			if(window.getComputedStyle){
+				return window.getComputedStyle(obj,wobj)[sty];
+			}else{
+				return obj.currentStyle[sty];
+			}
+		}
+</script>

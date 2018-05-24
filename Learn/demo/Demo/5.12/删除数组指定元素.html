@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>删除数组中指定元素</title>
+    <script>
+        var array=["1", "2", "3", "4", "5", "6", "7"];
+
+        /**
+         * 该方法用于删除传入的数组中用户已选择的选项
+         * @param {Array} array 表示需要修改的数组
+         * @param {string} item 可变参数 表示需要删除的选项
+         */
+        function deleteSelected(array, ...item){
+            for(var i=0; i<item.length; i++){
+                //查找需要删除的位置
+                var index = array.indexOf(item[i]);
+                //未查找到，结束本次循环
+                if(index === -1) continue;
+                //利用splice()删除
+                array.splice(index, 1);
+            }
+            //删除成功，返回结果
+            return array;
+        }
+
+        questionArray = deleteSelected(array, "", "");
+        console.log(array);
+    </script>
+</head>
+<body>
+</body>
+</html>

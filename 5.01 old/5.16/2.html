@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style>
+			*{
+				padding:0;
+				margin: 0;
+				list-style: none;
+			}
+			body{
+				background: #333;
+			}
+			#box{
+				width: 800px;
+				height: 42px;
+				margin: 100px auto;
+				background: white;
+				border-radius: 10px;
+				background-image: url(img/rss.png);
+				background-repeat: no-repeat;
+				background-position:center right;
+				position: relative;
+			}
+			#box ul{
+				position: relative;
+				z-index: 3;
+			}
+			#box ul li{
+				float: left;
+				width: 83px;
+				height: 42px;
+				line-height: 42px;
+				text-align: center;
+                cursor: pointer;
+			}
+			#cloud{
+				position: absolute;
+				width: 83px;
+				height: 42px;
+			
+			}
+		</style>
+	</head>
+	<body>
+		<div id="box">
+			<div id="cloud">
+				<img src="img/cloud.gif" />
+			</div>
+			<ul id="ulBox">
+				<li>北京校区</li>
+				<li>北京校区</li>
+				<li>北京校区</li>
+				<li>北京校区</li>
+				<li>北京校区</li>
+				<li>北京校区</li>
+				<li>北京校区</li>
+				<li>北京校区</li>
+			</ul>
+		</div>
+	</body>
+</html>
+<script>
+    var ulBoxs = [].slice.apply(document.getElementsByTagName("li"));
+    var cloud = document.getElementById("cloud");
+
+    //云的位置索引
+    var cloudIndex = 0;
+    //动画定时器
+    var timer;
+
+    var array = [];
+    //鼠标悬浮事件
+    ulBoxs.forEach((item, index, array)=>{
+        item.onmouseover = ()=>{
+            //清除定时器
+            if(timer != null){clearInterval(timer);}
+            //设置悬停动画
+            endSlowerAnimation(cloud, index*item.offsetWidth);
+        };
+        item.onmouseout = ()=>{
+            //清除定时器
+            if(timer != null){clearInterval(timer);}
+            //鼠标离开动画
+            endSlowerAnimation(cloud, cloudIndex*item.offsetWidth);
+        };
+        item.onclick = ()=>{
+            cloudIndex = index;
+            //设置云所在位置
+        };
+    });
+
+
+    //缓慢动画函数
+    function endSlowerAnimation(element, where){
+        var step = 0;
+        var now = element.offsetLeft;
+        var moveSize = where - now;
+        timer = setInterval(()=>{
+            //获取元素的当前位置
+            //获得增量
+            now = element.offsetLeft;
+            if(moveSize > 0){
+                step = Math.ceil((where - now) / 10);
+            }
+            if(moveSize < 0){
+                step = Math.floor((where - now) / 10);
+            }
+            if(now != where){
+                //设置元素位置
+                element.style.left = (element.offsetLeft + step)+"px";
+            }else{
+                clearInterval(timer);
+            }
+        }, 30);
+    }
+</script>

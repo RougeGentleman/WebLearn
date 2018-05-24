@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>图片预加载</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+            list-style: none;
+        }
+        ul, li{
+            width: 1000px;
+            margin: 0 auto;
+        }
+        img{
+            width: 800px;
+            vertical-align: middle;
+        }
+        p{
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+<ul id="container">
+
+</ul>
+
+<script>
+    const picSrc=[
+        "https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1526980242846&di=ab82043a41c7a8253cb87f39fe61bb3a&imgtype=jpg&src=http%3A%2F%2Fimg3.imgtn.bdimg.com%2Fit%2Fu%3D3525620993%2C3576145631%26fm%3D214%26gp%3D0.jpg",
+        "http://userimages19.51sole.com/20171114/b_4080682_201711140620027648.jpg",
+        "http://yhmimg.oss-cn-hangzhou.aliyuncs.com/7af48fd59048cb7b6c51133d76a029a5.jpg"
+    ];
+
+    let container = document.getElementById("container");
+
+    //存放图片数组
+    let picArray = [];
+    //图片已加载数量
+    let picLoaded = 0;
+
+    //TODO: this 测试
+    let thisArray = [];
+
+    picSrc.forEach((item, index, array)=>{
+        let _image = new Image();
+        _image.src = picSrc[index];
+        _image.onload = ()=>{
+            picLoaded ++;
+            picArray.push(_image);
+            isLoaderEnd(picLoaded);
+        }
+    });
+
+    function isLoaderEnd(index){
+        //添加加载进度
+        container.innerText = Math.floor(index/picSrc.length*100) +"%";
+        console.log(Math.floor(index/picSrc.length*100) +"%");
+        if(index === picSrc.length){
+            picArray.forEach((item, index, array)=>{
+                let _li = document.createElement("li");
+                _li.appendChild(picArray[index]);
+                container.appendChild(_li);
+
+            })
+        }
+
+    }
+</script>
+</body>
+</html>

@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" type="text/css" href="css/main.css"/>
+    <link rel="stylesheet" type="text/css" href="css/iconfont.css"/>
+</head>
+<body>
+<div class="top">
+    <div class="header">
+        <div class="header_left">
+            <img src="img/top_logo.png" alt="">
+            <span>实名注册</span>
+        </div>
+        <div class="header_right">
+            <span class="header_right_login">登录</span>
+            <span class="header_right_register">注册</span>
+        </div>
+    </div>
+</div>
+<div class="content">
+    <div class="content_container">
+        <div class="content_top">
+            <p>“学信网账号”可用于登录学信网各服务平台</p>
+            <p>支持的平台有：学信档案（含图像校对、学籍信息核对等）、中国研究生招生信息网、高考特殊类型招生报名平台、全国征兵网、学信就业、内地（祖国大陆）高校面向港澳台招生信息网、学职平台、全国大学生创业服务网等。如果您在使用这些服务时注册过账号，则可凭此账号使用其他服务，例如：如果您进行过图像校对，则可凭此账号进行“研招网上报名”、“兵役登记”、“应征入伍”等，而无需再次注册账号。</p>
+        </div>
+        <ul class="content_input">
+            <li class="content_col">
+                <span>* 手机号</span>
+                <input id="input_phone" maxlength="11" type="text">
+                <span id="input_phoneTip"></span>
+            </li>
+            <li class="content_col">
+                <span>* 校验码</span>
+                <p>
+                    <input id="input_SMS" type="text">
+                    <input id="input_SMSButton" type="button" value="免费获取" >
+                </p>
+                <span id="input_SMSTip"></span>
+            </li>
+            <li class="content_col">
+                <span>* 密码</span>
+                <input id="input_password"type="text">
+                <span id="input_passwordTip"></span>
+            </li>
+            <li class="content_col">
+                <span>* 密码确认</span>
+                <input id="input_passwordAgain" type="text">
+                <span id="input_passwordAgainTip"></span>
+            </li>
+            <li class="content_col">
+                <span>* 姓名</span>
+                <input id="input_name" type="text">
+                <span id="input_nameTip"></span>
+            </li>
+            <li class="content_col">
+                <span>* 证件类型</span>
+                <select>
+                    <option value="IC1" selected="selected">居民身份证</option>
+                    <option value="IC2">港澳台身份证</option>
+                    <option value="IC3">华侨身份证/Passport(无身份证者可填护照号）</option>
+                    <option value="IC4">其他</option>
+                </select>
+                <span>中国大陆地区用户推荐设置居民身份证。</span>
+            </li>
+            <li class="content_col">
+                <span>* 证件号码</span>
+                <input id="input_IC" type="text">
+                <span id="input_ICTip"></span>
+            </li>
+            <li class="content_col">
+                <span>安全邮箱</span>
+                <input id="input_email" type="text">
+                <span id="input_emailTip"></span>
+            </li>
+            <li class="content_tip">请牢记您设置的密保问题及答案，以便于您忘记密码时通过此“密保问题、答案”找回密码。</li>
+            <li class="content_col1">
+                <span>密保问题1</span>
+                <select id="select_question1">
+                    <option selected="selected">请选择</option>
+                </select>
+                <span>答案</span>
+                <input id="input_question1" type="text">
+            </li>
+            <li class="content_col1">
+                <span>密保问题2</span>
+                <select id="select_question2">
+                    <option selected="selected">请选择</option>
+                </select>
+                <span>答案</span>
+                <input id="input_question2" type="text">
+            </li>
+            <li class="content_col1">
+                <span>密保问题3</span>
+                <select id="select_question3">
+                    <option selected="selected">请选择</option>
+                </select>
+                <span>答案</span>
+                <input id="input_question3" type="text">
+            </li>
+            <li class="content_col2">
+                <span></span>
+                <p>
+                    <input id="input_checkbox" type="checkbox" checked="checked">
+                    <span>我已阅读并同意</span>
+                    <span>“服务条款”</span>
+                </p>
+            </li>
+            <li class="content_col3">
+                <span></span>
+                <input id="submitButton" type="button" value="立即注册"/>
+            </li>
+            <li class="content_col4">
+                <span></span>
+                <div>
+                    <span>找回用户名</span>
+                    <span>找回密码</span>
+                </div>
+            </li>
+        </ul>
+    </div>
+</div>
+<div class="footer">
+    <p>
+        <span>学信网</span>
+        <span>帮助中心</span>
+        <span>联系我们</span>
+        <span>Copyright © 2003-2018</span>
+        <span>学信网</span>
+        <span>京ICP证030485号</span>
+        <select name="" id="">
+            <option value="lang_zh">简体中文</option>
+            <option value="lang_en">English</option>
+        </select>
+    </p>
+</div>
+<script src="js/main.js"></script>
+</body>
+</html>

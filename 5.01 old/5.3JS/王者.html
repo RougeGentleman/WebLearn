@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>5.3标题点击</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+            list-style: none;
+        }
+        .content{
+            width: 1000px;
+            margin: 0 auto;
+        }
+        .content_menu{
+            height: 80px;
+            background: #202020;
+
+        }
+        .content_menu li{
+            text-align: center;
+            font-size: 25px;
+            color: #FFFFFF;
+            width: 230px;
+            height: 80px;
+            line-height: 80px;
+            float: left;
+        }
+        .content_menu li:first-child{
+            background: #FD8917;
+        }
+        .content_menu li:last-child{
+            font-size: 50px;
+            font-weight: bold;
+            background: #FD8917;
+            width: 80px;
+            height: 80px;
+        }
+        .content_bottom{
+            text-align: center;
+            height: 300px;
+            background: #2E2E2E;
+            position: relative;
+        }
+        .content_item{
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 300px;
+            line-height: 300px;
+            font-size: 30px;
+            color: #FFFFFF;
+            visibility: hidden;
+        }
+        .content_bottom .content_item:first-child{
+            visibility: visible;
+        }
+    </style>
+</head>
+<body>
+<div class="content">
+    <ul class="content_menu">
+        <li class="menuItem">全部</li>
+        <li class="menuItem">公告</li>
+        <li class="menuItem">新闻</li>
+        <li class="menuItem">媒体</li>
+        <li>+</li>
+    </ul>
+    <div class="content_bottom">
+        <div class="content_item">这是全部</div>
+        <div class="content_item">这是公告</div>
+        <div class="content_item">这是新闻</div>
+        <div class="content_item">这是媒体</div>
+    </div>
+</div>
+<script>
+    //获取所有 menuItem
+    var menuItems = [].slice.apply(document.getElementsByClassName("menuItem"));
+    //获得所有contentItem
+    var contentItems = [].slice.apply(document.getElementsByClassName("content_item"));
+
+    //设置点击事件
+    menuItems.forEach((item, index, array)=>{
+        item.onclick=()=>{
+            //1. 取消所有背景色
+            //2. 指定点击元素背景色
+            //3. 隐藏所有content item
+            //4. 显示与点击点击相关的content item
+            array.forEach((_item, _index, _array)=>{
+                _item.style.background="#202020";
+            });
+            console.log("index:"+index);
+            item.style.background="#FD8917";
+            contentItems.forEach((_item, _index, _array)=>{
+                _item.style.visibility="hidden";
+            });
+            contentItems[index].style.visibility="visible";
+        };
+    })
+</script>
+</body>
+</html>

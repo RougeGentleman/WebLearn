@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>5.6私有变量</title>
+    <script>
+        (function(){
+            var name="name";
+            Person=function(value){
+                name=value;
+            };
+            Person.prototype.setName=function(value){
+                name=value;
+            };
+            Person.prototype.getName=function(){
+                return name;
+            }
+        })();
+        var person1=new Person("1");
+        console.log(person1.getName());
+        person1.setName("2");
+        console.log(person1.getName()+"\n---------------");
+
+        var person2=new Person("3");
+        console.log(person2.getName());
+        console.log(person1.getName());
+
+        Person=null;
+        console.log(window);
+        console.log(person1.getName());
+    </script>
+</head>
+<body>
+
+</body>
+</html>

@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>5.8自动跳转网页</title>
+</head>
+<body>
+<script>
+    var index=6;
+    var timer=setInterval(()=>{
+        index--;
+        if(index<=0 ){
+            window.location.href="https://www.baidu.com";
+            clearInterval(timer);
+        }
+        document.body.innerHTML="<h3 style='text-align: center;margin: 0;'>"+index+"</h3>";
+
+    },1000);
+</script>
+</body>
+</html>

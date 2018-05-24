@@ -1,0 +1,158 @@
+<!DOCTYPE <!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>4.27上午</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- <link rel="stylesheet" type="text/css" media="screen" href="main.css" /> -->
+</head>
+<body>
+    <div id="_a"></div>
+    <audio id="bgMusic" src="9263.ogg" controls="controls"></audio>
+
+    <script>
+
+        //背景音效控件
+        var bgMusic=document.getElementById("bgMusic");
+        bgMusic.style.visibility="hidden";
+
+        //移动等级
+        var _index=0;
+        var a=document.getElementById("_a");
+        a.style.width="100px";
+        a.style.height="100px";
+        a.style.borderRadius="50%";
+        a.style.background="yellow";
+        // a.style.margin="0px auto";
+        a.innerText=">_<";
+        a.style.textAlign="center";
+        a.style.lineHeight="100px";
+        a.style.fontSize="30px";
+        a.style.position="absolute";
+        a.style.left="200px";
+        a.style.top="200px";
+        a.style.cursor="pointer";
+        
+        a.onmouseover=function(){
+            bgMusic.play();
+            randomMove(a, 50);
+        };
+        console.log(typeof a.style.left);
+        // a.onmouseleave=function(){
+        //     a.style.left="50%";
+        // };
+
+        //线性移动函数
+        //index: 当前移动等级
+        //_var : 需要进行移动的变量
+        //_time: 延时 
+        function linearMove(index, _var, _time){
+            if(index == undefined || _var == null){
+                return;
+            }
+            //获取移动增量
+            var _movePx=Math.pow(index, 2);
+            //获得方向数组
+            var _moveDirection=getRandomDirection();
+            //设置移动位置
+            if(_moveDirection[0]==-1){
+                if(parseInt(_var.style.left)>0){
+                    //设置移动位置
+                    _var.style.left=(parseInt(_var.offsetLeft)-100)+"px";
+                }
+            }else{
+                if(parseInt(_var.style.left)<1000){
+                    //设置移动位置
+                    _var.style.left=(parseInt(_var.style.left)+_movePx)+"px";
+                }
+            }
+            if(_moveDirection[1]==-1){
+                if(parseInt(_var.style.top)>0){
+                    _var.style.top=(parseInt(_var.style.top)-_movePx)+"px";
+                }
+            }else{
+                if(parseInt(_var.style.top)<600){
+                    _var.style.top=(parseInt(_var.style.top)+_movePx)+"px";
+                }
+            }
+            console.log("left:"+_var.style.left);
+            console.log("top:"+_var.style.top);  
+            console.log("_movePx:"+_movePx+"\n");
+            console.log("_moveDirection:"+_moveDirection+"\n");
+            console.log("x:"+_var.style.left+", y:"+_var.style.top+"\n");
+
+        }
+
+        //随机移动函数
+        //_var : 需要移动的变量
+        //_time: 延时时间 
+        function randomMove(_var, _time){
+            //获取左边，顶部初始值
+            var _left=parseInt(_var.style.left);
+            var _top=parseInt(_var.style.top);
+            //获取窗口可视大小，并设置实际可移动大小
+            var _width=document.body.clientWidth-parseInt(_var.style.width);
+            var _height=document.body.clientHeight-parseInt(_var.style.height);
+            //设置结束位置左边
+            var _endLeft=parseInt(Math.random()*_width);
+            var _endTop=parseInt(Math.random()*_height);
+            //设置延时
+            delayAnimation(_var, 10, _left, _top, _endLeft, _endTop);
+        }
+
+        //延时动画函数
+        //_var    : 需要进行动画的函数
+        //_time   : 延时的时间
+        //_left   : 左边初始值
+        //_right  : 右边初始值
+        //_endLeft: 左边结束值
+        //_endTop : 顶部结束值
+        function delayAnimation(_var, _time, _left, _top, _endLeft, _endTop) {
+            var a = 0;
+         var timer=   setInterval(function () {
+                //根据插值器设置x，y位置
+                a += 0.01;
+                var _a = parseInt(_var.style.left);
+                var _b = parseInt(_var.style.top);
+                _var.style.left = (_a + (_endLeft - _a) * getInterpolation(a)) + "px";
+                _var.style.top = (_b + (_endTop - _b) * getInterpolation(a)) + "px";
+             if (a >1) {
+                 clearInterval(timer);
+             }
+            }, _time);
+
+        }
+
+        //插值器函数
+        function getInterpolation( input) {
+            return (Math.cos((input + 1) * Math.PI) / 2.0) + 0.5;
+        }
+
+        //用于随机方向函数
+        function getRandomDirection(){
+            // X轴, 1:正 ， -1：负
+            var _a;
+            // Y轴  1：正， -1：负
+            var _b;
+
+            //设置X轴方向
+            if(Math.random()>0.5){
+                _a=1;
+            }else{
+                _a=-1;
+            }
+
+            //设置Y轴方向
+            if(Math.random()<0.5){
+                _b=1;
+            }else{
+                _b=-1;
+            }
+
+            return [_a, _b];
+        }
+        
+        
+    </script>   
+</body>
+</html>

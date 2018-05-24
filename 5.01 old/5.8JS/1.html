@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+            list-style: none;
+        }
+        #box{
+            background: red;
+            height: 700px;
+            position: relative;
+        }
+        #shadow{
+            background: black;
+            width: 100%;
+            height: 100%;
+        }
+        #one{
+            width: 100px;
+            height: 100px;
+            background: #FFFFFF;
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            margin: auto auto;
+        }
+    </style>
+</head>
+<body>
+<div id="box">
+    <div id="shadow"></div>
+    <div id="one">
+        <div id="close">X</div>
+    </div>
+</div>
+<script>
+    var one=document.getElementById("one");
+    var shadow=document.getElementById("shadow");
+    var close=document.getElementById("close");
+
+    var i=0;
+    close.onclick=()=>{
+        close.style.display="none";
+        startInterval(true);
+    };
+
+    //开始定时器函数
+    //函数接受一个类型为Boolean类型的参数，当按钮点击传入true时i+1，当按钮没有点击时等待
+    function startInterval(_isClick){
+        var timer=setInterval(()=>{
+            if(_isClick){
+                i++;
+                _isClick=false;
+                if(i<5){
+                    close.style.display="block";
+                    shadow.style.display="block";
+                }else{
+                    close.style.display="none";
+                    shadow.style.display="none";
+                    clearInterval(timer);
+                }
+            }
+        },1000);
+    }
+</script>
+</body>
+</html>

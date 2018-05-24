@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>5.3按钮点亮</title>
+    <style>
+        body{
+            text-align: center;
+        }
+        input{
+            border-radius: 3px;
+            border: 1px solid #979797;
+            background: #F1F1F1;
+            color: #000000;
+            margin-top: 50px;
+        }
+    </style>
+</head>
+<body>
+<input type="button" value="按钮1">
+<input type="button" value="按钮2">
+<input type="button" value="按钮3">
+<input type="button" value="按钮4">
+<input type="button" value="按钮5">
+<input type="button" value="按钮6">
+<script>
+    //获取所有button
+    var buttons=[].slice.apply(document.getElementsByTagName("input"));
+    //设置点击效果
+    buttons.forEach((item, index, array)=>{
+        item.onclick=()=>{
+            array.forEach((_item, _index, _array)=>{
+               _item.style.background="#F1F1F1";
+            });
+            item.style.background="yellow";
+        }
+    })
+
+</script>
+</body>
+</html>

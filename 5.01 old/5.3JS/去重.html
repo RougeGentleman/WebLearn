@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>去重</title>
+</head>
+<body>
+<script>
+    var a=["a", "b", "c", "c", "a", "e"];
+    var b=[];
+    a.forEach((item, index, array)=>{
+       var isHave=false;
+       b.forEach((_item, _index, _array)=>{
+           if(_item === item){
+               isHave=true;
+           }
+       });
+       if(isHave===false){
+           b.push(item);
+       }
+    });
+    console.log(b);
+</script>
+</body>
+</html>

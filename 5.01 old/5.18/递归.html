@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>递归:求100以内的和</title>
+    <script>
+        // 方法1:
+        function total1(num){
+            if(num <= 1){
+                return 1;
+            }else{
+                return num + total1(--num);
+            }
+        }
+        console.log("total1(100): "+total1(100));
+
+        // 方法2:
+        function total2(num){
+            if(num <= 1){
+                return 1;
+            }else{
+                return num + arguments.callee(--num);
+            }
+        }
+        console.log("total2(100): "+total2(100));
+
+        // 方法3 - 精简版:
+        function total3(num){
+            return num <=1 ? 1 : num +arguments.callee(--num);
+        }
+        console.log("total3(100): "+total3(100));
+    </script>
+</head>
+<body>
+
+</body>
+</html>

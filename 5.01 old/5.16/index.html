@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>5.16</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+            list-style: non
+        }
+        body{
+            padding: 10px;
+        }
+        input{
+            width: 50px;
+            height: 25px;
+            background: red;
+            color: #FFFFFF;
+            border: 0;
+        }
+        .content{
+            width: 100px;
+            height: 50px;
+            background: blue;
+            position: relative;
+            top: 10px;
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <input type="button" id="left" value="200">
+    <input type="button" id="right" value="400">
+</div>
+<div class="content"></div>
+<script>
+    const leftButton = document.getElementById("left");
+    const rightButton = document.getElementById("right");
+    const element = document.getElementsByClassName("content")[0];
+    let timer;
+    
+    leftButton.onclick = ()=>{
+        if(timer != null) clearInterval(timer);
+        endSlowerAnimation(element, 200, 100);
+    };
+    rightButton.onclick = ()=>{
+        if(timer != null) clearInterval(timer);
+        endSlowerAnimation(element, 400, 100);
+    };
+    //缓慢动画函数
+    function endSlowerAnimation(element, where, time){
+        let step = 0;
+        let start = element.offsetLeft;
+        let moveSize = where - start;
+        let now = element.offsetLeft;
+        timer = setInterval(()=>{
+            //获取元素的当前位置
+            //获得增量
+            now = element.offsetLeft;
+            if(moveSize > 0){
+                step = Math.ceil((where - now) / 10);
+            }
+            if(moveSize < 0){
+                step = Math.floor((where - now) / 10);
+            }
+            if(now !== where){
+                //设置元素位置
+                element.style.left = (element.offsetLeft + step)+"px";
+            }else{
+                clearInterval(timer);
+            }
+        }, 50);
+    }
+</script>
+</body>
+</html>

@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+            list-style: none;
+        }
+        .container{
+            width: 1200px;
+            height: 460px;
+            margin: 0 auto;
+            overflow: hidden;
+        }
+        ul{
+            position: relative;
+        }
+        ul li{
+            width: 240px;
+            height: 460px;
+            overflow: hidden;
+            /*position: absolute;*/
+            float: left;
+        }
+        img{
+        }
+    </style>
+</head>
+<body>
+<ul class="container">
+    <li><img src="img/1.jpg" alt=""></li>
+    <li><img src="img/2.jpg" alt=""></li>
+    <li><img src="img/3.jpg" alt=""></li>
+    <li><img src="img/4.jpg" alt=""></li>
+    <li><img src="img/5.jpg" alt=""></li>
+</ul>
+<script>
+    const lis = [].slice.apply(document.getElementsByTagName("li"));
+
+    // //设置默认位置
+    // for(let i = 0; i< lis.length; i++){
+    //     lis[i].style.left = (i * parseInt(getElementCSS(lis[i], null, "width")))+"px";
+    // }
+
+    lis.forEach((item, index, array)=>{
+        item.onmouseover=()=>{
+            array.forEach((_item, _index, _array)=>{
+                if(_index === index){
+                    styleAnimation(_item, {"width":"800px"});
+                }else{
+                    styleAnimation(_item, {"width":"100px"});
+                }
+            });
+        };
+
+        item.onmouseout= ()=>{
+            array.forEach((_item, _index, _array)=>{
+                styleAnimation(_item, {"width":"240px"});
+            });
+        }
+    });
+
+
+    /**
+     * 给函数设置动画属性
+     * @param {Object} element 需要设置动画的元素
+     * @param {Object} attribute 需要设置的属性集合 JSON
+     */
+    function styleAnimation(element, attribute){
+        //清除定时器
+        if(element.timer){ clearInterval(element.timer);}
+        let now;
+        let step;
+        let target;
+        element.timer = setInterval(()=>{
+            let isEnd = true;
+            for(let value in attribute){
+                //获取元素的当前值
+                now = parseInt(getElementCSS(element, null, value));
+                //设置target的值
+                if(!target){ target = parseInt(attribute[value]); }
+                //设置step，判断是上取舍还是下取舍
+                if(target > now){
+                    step = Math.ceil((target - now)/10);
+                }else{
+                    step = Math.floor((target - now)/10);
+                }
+                //设置位置
+                element.style[value] = (now + step)+"px";
+                console.log("target:"+target+" now:"+now+" step:"+step);
+                //在获取一次当前的值，判断是否已经完成
+                // now = parseInt(getElementCSS(element, null, value));
+                if(target !== now){
+                    isEnd = false;
+                }
+            }
+            if(isEnd){
+                if(element.timer){
+                    clearInterval(element.timer);
+                }
+            }
+        },10);
+
+    }
+
+    //元素 style 提取工具
+    function getElementCSS(obj, fObj, where){
+        if(window.getComputedStyle){
+            return window.getComputedStyle(obj, fObj)[where];
+        }else{
+            return obj.currentStyle[where];
+        }
+    }
+</script>
+</body>
+</html>

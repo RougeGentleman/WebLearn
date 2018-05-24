@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        .container{
+            width: 600px;
+            height: 600px;
+            margin: 30px auto;
+            position: relative;
+        }
+        #hour, #min, #sec{
+            width: 30px;
+            position: absolute;
+            top: 0px;
+            left: 285px;
+        }
+
+    </style>
+</head>
+<body>
+<div class="container">
+    <img class="clock" src="img/clock.jpg" alt="">
+    <img id="hour" src="img/hour.png" alt="">
+    <img id="min" src="img/minute.png" alt="">
+    <img id="sec" src="img/second.png" alt="">
+</div>
+<script>
+    //设置需要旋转的元素
+    var elementSec=document.getElementById("sec");
+    var elementMin=document.getElementById("min");
+    var elementHour=document.getElementById("hour");
+
+    //设置定时器
+    var timer=setInterval(()=>{
+        //获取当前的时间
+        var now=new Date();
+        //获取小时，分钟，秒的数值
+        var sec=now.getSeconds();
+        var min=now.getMinutes()+(sec/60);
+        var hour=now.getHours()+(min/60);
+        //判断当前是否为下午
+        if(hour>12){
+            hour-=12;
+        }
+        //设置选择度数
+        elementSec.style.transform="rotate("+(sec+now.getMilliseconds()/1000)*6+"deg)";
+        elementMin.style.transform="rotate("+min*6+"deg)";
+        elementHour.style.transform="rotate("+hour*30+"deg)";
+    }, 1);
+</script>
+</body>
+</html>

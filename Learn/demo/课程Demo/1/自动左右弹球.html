@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style>
+		/**{
+			padding:0;
+			margin:0;
+		}*/
+		    #dv {
+		        width: 100px;
+		        height: 100px;
+		        background: lightpink;
+		        position: absolute;
+		    }
+		</style>
+	</head>
+	<body>
+		<div id="dv"></div>
+	</body>
+	<script>
+		var  box = document.getElementById('dv');
+		var flag = 1;
+		setInterval(function(){
+			if(flag == -1){
+				autoAnimate(0)
+			}else{
+				autoAnimate(200)
+			}
+		},50);
+		function autoAnimate(target){
+			var step = 12*flag;
+			var leader = box.offsetLeft;//当前位置
+			if(Math.abs(target - leader)>=Math.abs(step)){
+				leader = leader + step;//匀速公式
+				box.style.left = leader+'px';
+			}else{
+				box.style.left = target+'px';
+			}
+			if(leader == 200){
+				flag = -1;
+			}
+			if(leader == 0){
+				flag = 1;
+			}
+			
+			/*var step = 12*flag;
+			var leader = box.offsetLeft;
+			if(flag == -1){
+				target = 0;
+			}
+			//step 区间
+			if(Math.abs(target - leader) > Math.abs(step)){
+				leader = leader + step;
+				box.style.left = leader+'px';
+			}else{
+				box.style.left = target+'px';
+			}
+			if(leader == target){
+				flag = -1;
+			}
+			if(leader == 0){
+				flag = 1;
+			}*/
+		}
+	</script>
+</html>

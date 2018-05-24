@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Object定义及赋值问题</title>
+    <script>
+        // JS赋值新认识 地址：https://segmentfault.com/a/1190000002965140
+        var foo={n:1};
+        var fab=foo;
+        foo.x=foo={n:2};
+        console.log(foo.x);
+        // TODO：执行结果 undefined 说明
+        // 在表达式: foo.x = foo = { n:2 }中
+        // 首先 得到 {n:1} 成员 x 的引用
+        // 之后 执行 foo = {n:2} 并将 当前的引用 赋值给 foo.x <= 它指向了{n:1}成员x
+    </script>
+</head>
+<body>
+
+</body>
+</html>

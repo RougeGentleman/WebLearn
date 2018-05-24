@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>轮播学习1</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+            list-style: none;
+        }
+        .container{
+            width: 490px;
+            height: 170px;
+            margin: 20px auto;
+            border: 2px solid skyblue;
+            overflow: hidden;
+            position: relative;
+        }
+        .content{
+            width: 2450px;
+            height: 170px;
+            position: absolute;
+        }
+        .content li{
+            float: left;
+        }
+        .content li img{
+            width: 490px;
+            height: 170px;
+        }
+        .buttons{
+            position: absolute;
+            bottom: 20px;
+            right: 50px;
+        }
+        .buttons li{
+            float: left;
+            width: 20px;
+            height: 20px;
+            text-align: center;
+            line-height: 20px;
+            background: #FFFFFF;
+            color: #000000;
+            margin-right: 5px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <ul class="content">
+        <li><img class="contentImage" src="img/01.jpg" alt=""></li>
+        <li><img class="contentImage" src="img/02.jpg" alt=""></li>
+        <li><img class="contentImage" src="img/03.jpg" alt=""></li>
+        <li><img class="contentImage" src="img/04.jpg" alt=""></li>
+        <li><img class="contentImage" src="img/05.jpg" alt=""></li>
+    </ul>
+    <ul class="buttons">
+        <li class="button"><span>1</span></li>
+        <li class="button"><span>2</span></li>
+        <li class="button"><span>3</span></li>
+        <li class="button"><span>4</span></li>
+        <li class="button"><span>5</span></li>
+    </ul>
+</div>
+<script>
+    var content = document.getElementsByClassName("content")[0];
+    var contentImages = [].slice.apply(document.getElementsByClassName("contentImage"));
+    var buttons = [].slice.apply(document.getElementsByClassName("button"));
+
+    //定时器变量
+    var timer;
+
+    //按钮点击事件
+    buttons.forEach((item, index, array)=>{
+        item.onclick = ()=>{
+            //设置所有背景为默认：白色
+            array.forEach((_item, _index, _array)=>{ _item.style.background="#FFFFFF"});
+            //设置点击背景色
+            item.style.background = "red";
+            //清除定时器
+            clearInterval(timer);
+            //设置动画
+            animationWidthLeft(content, -contentImages[index].offsetLeft, 200);
+        };
+    });
+
+    /**
+     * 元素动画函数
+     * @param {object} element 需要设置动画的元素
+     * @param {number} where 移动位置
+     * @param {number} time 总的动画时间, 单位为: ms
+     */
+    function animationWidthLeft(element, where, time){
+        //获取需要移动的大小
+        var moveSize = element.offsetLeft - where;
+        //获取每次移动的间距
+        var step = moveSize / time;
+        var index = 0;
+        //设置定时器
+        timer = setInterval(()=>{
+            var total = element.offsetLeft - step;
+            //当前移动位置
+            element.style.left = total + "px";
+
+            console.log("step:"+step);
+            console.log(element.style.left);
+            if(step > 0){
+                if(total <= where){
+                    element.style.left = where+"px";
+                    clearInterval(timer);
+                }
+            }else if(step < 0) {
+                if(total >= where){
+                    element.style.left = where+"px";
+                    clearInterval(timer);
+                }
+            }
+        }, 1);
+    }
+
+
+</script>
+</body>
+</html>

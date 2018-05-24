@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>鼠标事件</title>
+    <style>
+        div{
+            height: 100px;
+            background: yellow;
+        }
+    </style>
+</head>
+<body>
+<div></div>
+<div></div>
+<div></div>
+<div></div>
+</body>
+<script>
+    var divs=[].slice.apply(document.getElementsByTagName("div"));
+    divs[0].onmouseover=function(){
+        this.style.background="blue";
+    };
+    divs[1].onmouseover=function(){
+        this.style.background="blue";
+    };
+    divs[2].onmouseover=function(){
+        this.style.background="blue";
+    };
+
+
+    for(var i=0; i<divs.length; i++){
+        // divs._index=i;
+        divs[i].onmouseover=function(){
+            this.style.background="blue";
+        }
+    }
+
+</script>
+</html>

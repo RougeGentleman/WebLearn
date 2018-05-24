@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>截取数字</title>
+    <script>
+        var num=prompt("请输入一个三位数字：");
+        var _a=num % 10;
+        var _b=((num % 100)- (num %100)%10)/10;
+        var _c=(num - _a - _b * 10)/100;
+        alert(_c);
+        alert(_b);
+        alert(_a);
+    </script>
+</head>
+<body>
+
+</body>
+</html>

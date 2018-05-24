@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>隔行变色</title>
+</head>
+<body>
+<ul>
+    <li>春</li>
+    <li>夏</li>
+    <li>秋</li>
+    <li>冬</li>
+</ul>
+<script>
+    var a = document.getElementsByTagName("li");
+    for(var i=0; i<a.length; i++){
+        if(i % 2 === 0){
+            a[i].style.color = "blue";
+        }
+    }
+</script>
+</body>
+</html>

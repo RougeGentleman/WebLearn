@@ -1,0 +1,38 @@
+1. 前面设置overflow后，后面父盒子设置relative，设置absolute的子盒子消失
+1. 当需要悬停显示时，要设置边框，可将导致偏移的边框设置透明
+1. 文档翻译时，function在最后执行
+1. 思考新的命名方式，需要连接长度能降低，但也能有一定的辨识度
+1. box-shadow的使用
+
+1.javascript中name既不是保留字，也不是关键字，因此用作变量时并不会报错；但是在Firefox、Safari、Chrome和Opera中都给函数定义了一个非标准的name属性，通过这个属性可以访问到给函数指定的名字，因此在这些浏览器中不能使用name作为变量名。
+1.JS中switch只能使用值，不能适用表达式
+1.? js=> in 只能迭代属性
+
+1. 获取元素高度和宽度： element.style.width | element.style.height => 返回string类型
+2. 获取可视窗口大小： document.body.clientHeight | document.body.clientWidth => 返回number类型
+
+1. document.getElementsByClassName()返回类型为NodeList
+2. 查找关于 transition 和 transform 使用
+
+5.6:
+a.在给实例设置prototype时，实际是设置属性，而不是原型。
+b.在function内在[this.xxx]表示的是公共方法/属性，没有就表示私有方法/属性。可以暴露公共方法，设置私有属性。
+
+5.7:关于Firefox document.write问题
+文档加载完后在Firefox下调用 document.write：
+1. 调用 document.write 会隐式调用 document.open
+2. 调用 document.open 会清空所有注册过的 timer
+3. 调用 document.open 但是不调用 document.close 就会一直菊花转
+
+5.8:变量命名冲突
+变量名：top/bottom应该与浏览器冲突
+
+5.9:事件冲突问题
+鼠标点击改变背景颜色与鼠标离开事件恢复默认背景冲突，背景颜色颜色被抵消
+
+5.14:无缝滚动衔接问题
+每次增加索引或减小索引时需进行判断，当没有达到转为索引时才能够改变索引
+
+5.16:缓慢滚动step叠加出错
+问题描述：缓动动画函数定时器运行时，每次加上step时都会额外加上一定的px;
+因为没有重置样式，所以每次移动都会给`left`加上默认8px的值

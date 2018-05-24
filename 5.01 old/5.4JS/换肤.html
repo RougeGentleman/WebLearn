@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>5.4</title>
+</head>
+<body>
+<div>
+    <span>春意绵绵</span>
+    <span>夏日炎炎</span>
+    <span>秋风瑟瑟</span>
+    <span>冬日皑皑</span>
+</div>
+<div class="bg"></div>
+<script>
+    var spanArray=document.getElementsByTagName("span");
+    var picArray=["url(../5.4JS/img/img1.jpg)", "url(../5.4JS/img/img3.jpg)", "url(../5.4JS/img/img4.jpg)", "url(../5.4JS/img/img2.jpg)"];
+    var bg=document.getElementsByTagName("body")[0];
+    console.log(spanArray.length);
+    for(var i=0; i<spanArray.length; i++){
+        spanArray[i]._index=i;
+        spanArray[i].style.margin="0px 20px";
+        spanArray[i].style.cursor="pointer";
+        spanArray[i].onmouseover=function(){
+            bg.style.background=picArray[this._index]+" no-repeat";
+            this.style.color="blue";
+        };
+        spanArray[i].onmouseleave=function(){
+            this.style.color="#000";
+        }
+    }
+</script>
+</body>
+</html>

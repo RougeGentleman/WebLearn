@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>5.16课后作业</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+            list-style: none;
+        }
+        html, body, div{
+            width: 100%;
+            height: 100%;
+        }
+        #one{
+            background: red;
+        }
+        #two{
+            background: blue;
+        }
+        #three{
+            background: white;
+        }
+        #four{
+            background: green;
+        }
+        #five{
+            background: black;
+        }
+        ul{
+            position: fixed;
+            left: 50px;
+            top: 50%;
+            width: 30px;
+            height: 150px;
+            margin-top: -75px;
+        }
+        li{
+            width: 48px;
+            line-height: 48px;
+            text-align: center;
+            height: 48px;
+            border-top: 1px solid black;
+            border-left: 1px solid black;
+            border-right: 1px solid black;
+            background: #FFFFFF;
+            font-size: 23px;
+            cursor: pointer;
+        }
+        ul li:last-child{
+            border-bottom: 1px solid black;
+        }
+        .clicked{
+            background: red;
+            color: white;
+        }
+
+    </style>
+</head>
+<body>
+    <div id="one"></div>
+    <div id="two"></div>
+    <div id="three"></div>
+    <div id="four"></div>
+    <div id="five"></div>
+    <ul>
+        <li class="clicked">1</li>
+        <li>2</li>
+        <li>3</li>
+        <li>4</li>
+        <li>5</li>
+    </ul>
+<script>
+    const divs = [].slice.apply(document.getElementsByTagName("div"));
+    const lis = [].slice.apply(document.getElementsByTagName("li"));
+
+    //定时器
+    let timer;
+    
+    lis.forEach((item, index, array) => {
+        //设置点击事件
+        item.onclick = ()=>{
+            //清除定时器
+            if(timer != null){ clearInterval(timer);}
+            //设置滚动
+            endSlowerAnimation(window, divs[index].offsetHeight*index);
+            //设置点击效果
+            array.forEach((_item, _index, _array)=>{_item.className = "";});
+            item.className = "clicked";
+        }
+    });
+
+    //缓慢动画函数
+    function endSlowerAnimation(element, where){
+        let step = 0;
+        let now = scroll().top;
+        let moveSize = where - now;
+        //清除定时器
+        if(timer != null){clearInterval(timer);}
+        timer = setInterval(()=>{
+            //获取元素的当前位置
+            //获得增量
+            now = scroll().top;
+            if(moveSize > 0){
+                step = Math.ceil((where - now) / 10);
+            }
+            if(moveSize < 0){
+                step = Math.floor((where - now) / 10);
+            }
+            if(now !== where){
+                //设置元素位置
+                element.scrollTo(0, (now+step));
+            }else{
+                clearInterval(timer);
+            }
+        }, 30);
+    }
+
+    //封装自己的scroll
+	function scroll(){
+		return  obj = {
+			'top':window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop || 0,
+			'left':window.pageXOffset ||document.documentElement.scrollLeft || document.body.scrollLeft ||0
+		}
+    }
+</script>
+</body>
+</html>

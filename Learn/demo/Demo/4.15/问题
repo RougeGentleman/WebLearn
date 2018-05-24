@@ -1,0 +1,1 @@
+1. function(){}外 使用：var _img=document.getElementById()失效 <= docuemnt 文档加载问题

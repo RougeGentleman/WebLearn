@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style>
+			*{
+				margin:0;
+				padding:0;
+			}
+			
+			.box{
+				float: left;
+				padding:5px;
+				border:1px solid #0000FF;
+			}
+		</style>
+	</head>
+	<body>
+		<div class="container" id="container">
+		    <div class="box"><img src="images/P_000.jpg" alt=""/></div>
+		    <div class="box"><img src="images/P_001.jpg" alt=""/></div>
+		    <div class="box"><img src="images/P_002.jpg" alt=""/></div>
+		    <div class="box"><img src="images/P_003.jpg" alt=""/></div>
+		    <div class="box"><img src="images/P_004.jpg" alt=""/></div>
+		    <div class="box"><img src="images/P_005.jpg" alt=""/></div>
+		    <div class="box"><img src="images/P_006.jpg" alt=""/></div>
+		    <div class="box"><img src="images/P_007.jpg" alt=""/></div>
+		    <div class="box"><img src="images/P_008.jpg" alt=""/></div>
+		    <div class="box"><img src="images/P_009.jpg" alt=""/></div>
+		    <div class="box"><img src="images/P_010.jpg" alt=""/></div>
+		    <div class="box"><img src="images/P_011.jpg" alt=""/></div>
+		    <div class="box"><img src="images/P_012.jpg" alt=""/></div>
+		    <div class="box"><img src="images/P_013.jpg" alt=""/></div>
+		    <div class="box"><img src="images/P_014.jpg" alt=""/></div>
+		    <div class="box"><img src="images/P_015.jpg" alt=""/></div>
+		    <div class="box"><img src="images/P_016.jpg" alt=""/></div>
+		    <div class="box"><img src="images/P_017.jpg" alt=""/></div>
+		    <div class="box"><img src="images/P_018.jpg" alt=""/></div>
+		    <div class="box"><img src="images/P_019.jpg" alt=""/></div>
+		    
+	</div>
+	<script>
+	window.onload = function(){
+		
+	
+		var box = document.getElementById('container');
+		var imgList = box.children;
+		//var imgDom = document.getElementsByTagName('img');//19
+		var imgWidth = box.children[0].offsetWidth;
+		//计算第一行能放几张图片（列）colum 列
+		var colum = Math.floor(getClientSize().width /imgWidth);///7
+		//设置一个数组，保存第一行所有图片的高度
+		var arry =[];//7
+		//封装函数
+		function ppl(){
+			/* imgList = box.children;
+			 imgDom = document.getElementsByTagName('img');//19
+			//设置一个数组，保存第一行所有图片的高度
+			 arry =[];*/
+			for(var i=0;i<imgList.length;i++){
+				if(i<colum){//前7张
+					arry[i]=imgList[i].offsetHeight;
+				}else{
+					imgList[i].style.position ='absolute';
+					imgList[i].style.left=(getMin().minIndex)*imgWidth+'px';
+					//imgList[i].style.left=imgList[getMin().minIndex].offsetLeft+'px';
+					imgList[i].style.top=getMin().minHeight+'px';
+					arry[getMin().minIndex] = getMin().minHeight+imgList[i].offsetHeight;
+				}
+			}
+		}
+		ppl();
+		 
+		//判断触底，
+		function touchbottom(){
+			/*var flag = false;
+			var lastTop = imgList[imgList.length-1].offsetTop;
+			if(lastTop <= getscroll().top+getClientSize.height){
+				flag = true;
+			}
+			return flag;*/
+			//页面被卷去的头部+可视区高度>最后一个盒子的顶部的offsetTop就到了
+                //页面被卷去的头部
+                var scrollTop = window.pageYOffset;
+                //可视区高度
+                var clientHeight = window.innerHeight;
+                //最后一个盒子的offsetTop
+                var lastBoxTop = imgList[imgList.length - 1].offsetTop;
+                if ((scrollTop + clientHeight) > lastBoxTop) {
+                    return true;
+                } else {
+                    return false;
+                }
+		}
+		 //当窗口滚动是，动态加载图片
+		window.onscroll = function(){
+			if(touchbottom()){
+				var json1 = [
+                    {"src": "images/P_000.jpg"},
+                    {"src": "images/P_001.jpg"},
+                    {"src": "images/P_002.jpg"},
+                    {"src": "images/P_003.jpg"},
+                    {"src": "images/P_004.jpg"},
+                    {"src": "images/P_005.jpg"},
+                    {"src": "images/P_006.jpg"},
+                    {"src": "images/P_007.jpg"},
+                    {"src": "images/P_008.jpg"},
+                    {"src": "images/P_009.jpg"},
+                ];
+                //遍历
+                for(var m= 0;m<json1.length;m++){
+                	var jsbox = document.createElement('div');
+	                jsbox.className='box';
+	                var jsimg = document.createElement('img');
+	                jsimg.setAttribute('src',json1[m]['src']);
+	                jsbox.appendChild(jsimg);//把图片节点添加到创建的div里
+	                box.appendChild(jsbox);//把div节点添加到大盒子box中
+                }
+                
+			}
+			ppl();
+		};
+			//imgDT();
+		
+		/*console.log(arry)*/
+		//查找数组中最小的高度和下标
+		function getMin(){// [288, 288, 288, 129, 284, 253, 245]
+			var obj={
+				'minIndex':0,
+				'minHeight':arry[0]
+			};
+			//找最小值
+			for(var j=0;j<arry.length;j++){
+				if(obj.minHeight>arry[j]){
+					obj.minIndex = j;
+					obj.minHeight = arry[j];
+				}
+			}
+			return obj;
+		}
+		//获取窗口卷曲的高度 /宽度
+		function getscroll(){
+			return{
+				'top':window.pageYOffset||document.documentElement.scrollTop||document.body.scrollTop,
+				'left':window.pageXOffset||document.documentElement.scrollLeft||document.body.scrollLeft
+			}
+			
+		}
+		//获取窗口的可是区域大小
+		function getClientSize(){
+			return{
+				'height':window.innerHeight || document.documentElement.clientHeight || document.body.clientHeight||0,
+				'width':window.innerWidth||document.documentElement.clientWidth||document.body.clientWidth
+			}
+		}
+	}
+	</script>
+	</body>
+</html>

@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>瀑布流</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+            list-style: none;
+        }
+        .container{
+            margin: 0 auto;
+        }
+        img{
+            position: absolute;
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+</div>
+<script>
+    //container
+    let containerElement = document.getElementsByClassName("container")[0];
+
+    //图片数组
+    let picArray = ["img/P_000.jpg", "img/P_001.jpg", "img/P_002.jpg", "img/P_003.jpg", "img/P_004.jpg", "img/P_005.jpg",
+        "img/P_006.jpg", "img/P_007.jpg", "img/P_008.jpg", "img/P_009.jpg", "img/P_010.jpg", "img/P_011.jpg",
+        "img/P_012.jpg", "img/P_013.jpg", "img/P_014.jpg", "img/P_015.jpg", "img/P_016.jpg", "img/P_017.jpg",
+        "img/P_018.jpg", "img/P_019.jpg"];
+
+    //获取每行默认可存放的图片列数
+    let col;
+    //图片数组的索引
+    let picIndex = 0;
+    //每个图片的宽度
+    let picWidth = 0;
+    //存放当前列的图片高度
+    let colArray = [];
+
+    //设置入口函数
+    window.onload = pre;
+    //设置默认状态
+    function pre(){
+        //创建一个图片元素并获取宽度，之后设置每行可显示列数
+        let _img = document.createElement("img");
+        _img.src = picArray[0];
+        containerElement.appendChild(_img);
+        //填充第一个图片高度
+        colArray.push([_img.offsetHeight+5, 0]);
+        //设置默认图片宽度
+        picWidth = _img.offsetWidth;
+        //获取每行可显示列数
+        col = (document.body.clientWidth - (document.body.clientWidth % picWidth))/picWidth;
+        //填充一行
+        for(let i = 1; i<col; i++){
+            picIndex++;
+            let _img1 = document.createElement("img");
+            _img1.src = picArray[picIndex];
+            //设置图片位置
+            _img1.style.left = (i * picWidth)+"px";
+            _img1.style.top = "0px";
+            containerElement.appendChild(_img1);
+            //填充后面的图片高度
+            colArray.push([_img1.offsetHeight+5, i]);
+        }
+        insertCol();
+        insertCol();
+        insertCol();
+        insertCol();
+
+        setEvents();
+    }
+
+    function setEvents(){
+        window.addEventListener("scroll", ()=>{
+            if(scroll().top <= getMinTop()){
+                //插入一行新的数据
+                insertCol();
+            }
+        })
+
+    }
+
+    //方法：用于填入一行的图片
+    function insertCol(){
+        //获得所有别排列的数组
+        let _colArray = getSortArray(colArray);
+        //插入数据，之后改变当前位置的数组
+        for(let i = 0; i<_colArray.length; i++){
+            //增加索引，当达到最后时，设置为第一个
+            picIndex++;
+            if(picIndex === picArray.length){
+                picIndex = 0;
+            }
+            //创建元素并添加
+            let _img = document.createElement("img");
+            _img.src = picArray[picIndex];
+            //设置位置left top
+            _img.style.top = _colArray[i][0]+"px";
+            _img.style.left = (_colArray[i][1] * picWidth) +"px";
+            containerElement.appendChild(_img);
+            //替换数组中数据
+            _colArray[i][0] = parseInt(_img.style.top) + _img.offsetHeight+5;
+        }
+    }
+
+    //方法：返回已经排序过的数组：升序
+    function getSortArray(array){
+        return array.sort((a, b)=>{
+            if(a[0] > b[0]){
+                return 1;
+            }else{
+                return -1;
+            }
+        })
+    }
+
+    //方法：用于获取图片的最低高度
+    function getMinTop(){
+        let _min = colArray[0][0];
+        for(let i=1; i<colArray.length; i++){
+            if(_min < colArray[i][0]){
+                _min = colArray[i][0];
+            }
+        }
+        return _min;
+    }
+
+    //封装自己的scroll
+    function scroll(){
+        return  obj = {
+            'top':window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop || 0,
+            'left':window.pageXOffset ||document.documentElement.scrollLeft || document.body.scrollLeft ||0
+        }
+    }
+
+</script>
+</body>
+</html>

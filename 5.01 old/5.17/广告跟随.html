@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>广告跟随</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+            list-style: none;
+        }
+        img{
+            position: absolute;
+            top: 80px;
+            left: 20px;
+        }
+        ul{
+            width: 100px;
+            margin: 0 auto;
+        }
+    </style>
+</head>
+<body>
+<img src="img/img1.jpg" alt="">
+<ul>
+    <li>好走，不送！</li>
+</ul>
+<script>
+    //悬停窗口默认为位置
+    const fixedTop =80;
+
+    var liElement = document.getElementsByTagName("li")[0];
+    var ulElement = document.getElementsByTagName("ul")[0];
+    var imgElement = document.getElementsByTagName("img")[0];
+
+    //上次滚动位置
+    var lastScrollTop = 0;
+    var timer;
+
+    for(var i= 100; i >= 0; i--){
+        var _li = liElement.cloneNode(true);
+        ulElement.appendChild(_li);
+    }
+
+    window.onscroll = ()=>{
+        //设置动
+        endSlowerAnimation2(imgElement, scroll().top+80);
+    };
+
+    //缓慢动画函数
+    function endSlowerAnimation2(element, where){
+        let step = 0;
+        let now = element.offsetTop;
+        let moveSize = where - now;
+        clearInterval(timer);
+        timer = setInterval(()=>{
+            //获取元素的当前位置
+            now = element.offsetTop;
+            //获得增量
+            if(moveSize > 0){
+                step = Math.ceil((where - now) / 10);
+            }
+            if(moveSize < 0){
+                step = Math.floor((where - now) / 10);
+            }
+            if(now !== where){
+                //设置元素位置
+                element.style.top = (now + step)+"px";
+                console.log("now:"+now+" step:"+step);
+            }else{
+                clearInterval(timer);
+            }
+        }, 30);
+    }
+
+    //封装自己的scroll
+    function scroll(){
+        return  obj = {
+            'top':window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop || 0,
+            'left':window.pageXOffset ||document.documentElement.scrollLeft || document.body.scrollLeft ||0
+        }
+    }
+</script>
+</body>
+</html>

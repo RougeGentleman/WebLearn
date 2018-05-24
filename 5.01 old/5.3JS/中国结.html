@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>红棱形</title>
+    <style>
+        body{
+            text-align: center;
+        }
+        span{
+            width: 30px;
+            height: 30px;
+            margin: 0 3px;
+            background: #FE0000;
+            display: inline-block;
+        }
+    </style>
+</head>
+<body>
+<script>
+    var _span="<span><\/span>";
+    var i;
+    var j;
+    for(i=1; i<=13; i+=2){
+        for(j=i; j>0; j--){
+            document.write(_span);
+            console.log("aaa");
+        }
+        document.write("</br>");
+    }
+    for(i=11; i>0; i-=2){
+        for(j=i; j>0; j--){
+            document.write(_span);
+            console.log("bbb");
+        }
+        document.write("</br>");
+    }
+</script>
+</body>
+</html>

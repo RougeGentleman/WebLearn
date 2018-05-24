@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style type="text/css">
+			#box{
+				width: 100px;
+				height: 100px;
+				background: red;
+				line-height: 100px;
+				margin: 0 auto;
+			}
+		</style>
+	</head>
+	<body>
+		<button id="box">clear</button>
+	</body>
+</html>
+<script type="text/javascript">
+	function checkcookie(){
+		//新建一个cookie
+		var cook = document.cookie;
+		console.log("start:"+cook);
+		//判断如果cookie是空，就需要输入；如果有就获取cookie的name。
+		if(cook == null || cook == ''|| cook.lenght <= 0){
+			var name1 = prompt('请输入您的名字');
+			setcookie('user',name1,30);
+			console.log(1)
+		}else{
+			getcookie('user');
+		}
+	}
+	//转换成GMT时间
+	function setcookie(name,value,date){
+		var date1 = new Date();
+		date1.setTime(date1.getTime()+date*24*60*60*1000);
+		var gmtTime = date1.toGMTString();
+		document.cookie = name +"="+value+";expires="+gmtTime;
+		// document.cookie = "aaaa";
+		console.log( name +'='+value+';expires='+gmtTime);
+	}	
+	//获取mane，
+	function getcookie(name){
+		var a =name + '=';
+		var cook1 = document.cookie;
+		if(cook1.indexOf(a)==0){
+			var b = cook1.slice(a.length)
+			alert('欢迎'+b+'再次光临');
+		}
+	}
+	var box = document.getElementById('box');
+	box.onclick = function(){
+		removecookie('user');
+	}
+	//使用JavaScript清理Cookie首先要找到该Cookie对应的Name对应的值，然后设置其为过期
+	//地址: https://zhidao.baidu.com/question/755209190814746564.html
+	function removecookie(name){
+		var a =name + '=';
+		var cook1 = document.cookie;
+		if(cook1.indexOf(a)==0){
+			//获取当前name 的值
+			var b = cook1.slice(a.length);
+			//将name 的cookie 设置过期(有效时间为0)
+			setcookie(name,b,0);
+		}
+		
+	}
+
+	checkcookie();
+</script>

@@ -1,0 +1,67 @@
+<!DOCTYPE <!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>三目运算符使用</title>
+    <script>
+
+        // 第1题
+        var type=prompt("题1： 请输入汽油号");
+        var size=prompt("题1： 请输入加入汽油量");
+        if(type == "92"){
+            size >= 20 ? alert("题1："+(size*5.9)+"元") : alert("题1："+(size*6)+"元");
+        }else if(type == "97"){
+            size >=30 ? alert("题1："+(size*6.95)+"元") : alert("题1："+(size*7)+"元");
+        }
+
+        // 第2题
+        // var _user=prompt("题2： 请输入用户名");
+        // if(_user=="admin"){
+        //     var _password=prompt("题2： 请输入密码");
+        //     if(_password == "88888"){
+        //         alert("题2：登陆成功");
+        //     }else{
+        //         alert("题2：登陆失败");
+        //     }
+        // }
+
+        prompt("题2： 请输入用户名")=="admin" ? (prompt("题2： 请输入密码")=="88888"?alert("登陆成功"):alert("登陆失败")):alert("请确认用户名");
+
+        //第3题
+        var n_1=prompt("题3：请输入第1个数");
+        var n_2=prompt("题3：请输入第2个数");
+        var n_3=prompt("题3：请输入第3个数");
+        n_1 > n_2 ? (n_1 > n_3 ? alert(n_1): alert(n_3)):(n_2>n_3? alert(n_2):alert(n_3));
+
+        //案例 第一题
+        var socre=prompt("案例 题1：请输入成绩");
+        if(socre<=20){
+            console.log(socre+"分的渣渣");
+        }else if(socre<=40 && socre>20){
+                console.log(socre+"分的小渣渣");
+        }else if(socre<=60 && socre>40){
+            console.log("哦, "+socre+"分");
+        }else if(socre<=80 && socre>60){
+            console.log("呵，及格了");
+        }else{
+            console.log("可以嘛，小伙子");
+        }
+
+        //案例 第2题
+        var season=prompt("案例 题2： 请输入1个月份");
+        if(season>=2 && season<=4){
+            console.log("案例 题2：春季");
+        }else if(season>=5 && season<=7){
+            console.log("案例 题2：夏季");
+        }else if(season>=8 && season<=10){
+            console.log("案例 题2：秋季");
+        }else if(season==1 || (season>=10 && season<=12)){
+            console.log("案例 题2：冬季");
+        }
+    </script>
+</head>
+<body>
+    
+</body>
+</html>

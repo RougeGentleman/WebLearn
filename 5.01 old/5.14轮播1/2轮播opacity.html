@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>轮播学习1</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+            list-style: none;
+        }
+        .container{
+            width: 490px;
+            height: 170px;
+            margin: 20px auto;
+            border: 2px solid skyblue;
+            overflow: hidden;
+            position: relative;
+        }
+        .content{
+            width: 490px;
+            height: 170px;
+            position: absolute;
+        }
+        .content li{
+            float: left;
+            position: absolute;
+            left: 0;
+            top: 0;
+            opacity: 0;
+        }
+        .content li:first-child{
+            opacity: 1;
+        }
+        .content li img{
+            width: 490px;
+            height: 170px;
+        }
+        .buttons{
+            position: absolute;
+            bottom: 20px;
+            right: 50px;
+        }
+        .buttons li{
+            float: left;
+            width: 20px;
+            height: 20px;
+            text-align: center;
+            line-height: 20px;
+            background: #FFFFFF;
+            color: #000000;
+            margin-right: 5px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <ul class="content">
+        <li class="contentImage"><img  src="img/01.jpg" alt=""></li>
+        <li class="contentImage"><img  src="img/02.jpg" alt=""></li>
+        <li class="contentImage"><img src="img/03.jpg" alt=""></li>
+        <li class="contentImage"><img src="img/04.jpg" alt=""></li>
+        <li class="contentImage"><img src="img/05.jpg" alt=""></li>
+    </ul>
+    <ul class="buttons">
+        <li class="button"><span>1</span></li>
+        <li class="button"><span>2</span></li>
+        <li class="button"><span>3</span></li>
+        <li class="button"><span>4</span></li>
+        <li class="button"><span>5</span></li>
+    </ul>
+</div>
+<script>
+    var content = document.getElementsByClassName("content")[0];
+    var contentImages = [].slice.apply(document.getElementsByClassName("contentImage"));
+    var buttons = [].slice.apply(document.getElementsByClassName("button"));
+
+    //定时器变量
+    var timer;
+
+    //设置opacity的前后元素
+    var opacityArray = new Array(2);
+
+    //按钮点击事件
+    buttons.forEach((item, index, array)=>{
+        if(index === 0){
+            opacityArray[0] = contentImages[index];
+        }
+        item.onclick = ()=>{
+            //设置所有背景为默认：白色
+            array.forEach((_item, _index, _array)=>{ _item.style.background="#FFFFFF"});
+            //设置点击背景色
+            item.style.background = "red";
+            //清除定时器
+            clearInterval(timer);
+            opacityArray[1] = contentImages[index];
+            //设置动画
+            animationWidthOpacity(opacityArray[0], opacityArray[1], 200);
+        };
+    });
+
+    /**
+     * 元素轮播，使用opacity属性
+     * @param {object} oldElement 当前元素
+     * @param {object} newElement 需要显示的元素
+     * @param {number} time 总的动画时间, 单位为: ms
+     */
+    function animationWidthOpacity(oldElement, newElement, time){
+        //得到opacity增量
+        var step = 2 / time;
+        // if(oldElement === newElement){ return; }
+        oldElement.style.opacity = "1";
+        newElement.style.opacity = "0.3";
+        //设置定时器
+        timer = setInterval(()=>{
+            if(oldElement.style.opacity > 0.3){
+                var _opacity = parseFloat(oldElement.style.opacity);
+                oldElement.style.opacity = (_opacity-step)+"";
+                console.log("old:"+_opacity);
+            }else{
+                var _opacity = Number( newElement.style.opacity);
+                newElement.style.opacity = (_opacity+step) +"";
+                console.log("new:"+_opacity);
+                if(_opacity >= 1){
+                    //设置旧元素
+                    opacityArray[0] = newElement;
+                    newElement.style.opacity = "1";
+                    oldElement.style.opacity = "0";
+                    clearInterval(timer);
+                }
+            }
+        }, 1);
+    }
+
+</script>
+</body>
+</html>

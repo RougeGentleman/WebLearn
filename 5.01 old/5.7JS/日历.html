@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>5.7日历</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+            list-style: none;
+            font-size: 13px;
+        }
+        .container{
+            width: 120px;
+            height: 300px;
+            background: #5BAEFF;
+            margin: 30px auto;
+            padding-top: 5px;
+            color: #FFFFFF;
+            text-align: center;
+        }
+        .date, .sun{
+            font-size: 13px;
+        }
+        .today{
+            background: #FFBB00;
+            width: 70px;
+            height: 70px;
+            line-height: 70px;
+            margin: 15px auto;
+            font-size: 30px;
+        }
+        .tip{
+            text-align: center;
+            width: 80px;
+            height: 150px;
+            overflow: hidden;
+            margin: 5px auto;
+        }
+        .tip ul:first-child{
+            float: left;
+        }
+        .tip ul:last-child{
+            float: right;
+        }
+        ul li:first-child{
+            font-size: 20px;
+        }
+
+
+    </style>
+</head>
+<body>
+<div class="container">
+    <p>
+        <span class="date"></span>
+        <span class="sun"></span>
+    </p>
+    <p class="today"></p>
+    <p>戊戌年 【狗年】</p>
+    <p>丁月 己亥日</p>
+    <div class="tip">
+        <ul>
+            <li>宜</li>
+            <li>祭祀</li>
+            <li>沐浴</li>
+            <li>解除</li>
+            <li>破屋</li>
+        </ul>
+        <ul>
+            <li>忌</li>
+            <li>开光</li>
+            <li>安葬</li>
+        </ul>
+    </div>
+</div>
+<script>
+    //获取需要填入数据的元素
+    var date=document.getElementsByClassName("date")[0];
+    var sun=document.getElementsByClassName("sun")[0];
+    var today=document.getElementsByClassName("today")[0];
+    //获取当前日期
+    var now=new Date();
+    // date.innerText=now.getFullYear()+"-"+now.getMonth()+"-"+now.getDate();
+    date.innerText=now.getFullYear()+"-"+(now.getMonth()+1)+"-"+now.getDate();
+    switch(now.getDay()){
+        case 0:
+            sun.innerText="星期日";
+            break;
+        case 1:
+            sun.innerText="星期一";
+            break;
+        case 2:
+            sun.innerText="星期二";
+            break;
+        case 3:
+            sun.innerText="星期三";
+            break;
+        case 4:
+            sun.innerText="星期四";
+            break;
+        case 5:
+            sun.innerText="星期五";
+            break;
+        case 6:
+            sun.innerText="星期六";
+            break;
+    }
+    today.innerText=now.getDate()+"";
+
+</script>
+</body>
+</html>

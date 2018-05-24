@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>5.4课后作业 隔行变色</title>
+</head>
+<body>
+<ul>
+    <li></li>
+    <li></li>
+    <li></li>
+    <li></li>
+    <li></li>
+</ul>
+<script>
+    var lis=[].slice.apply(document.getElementsByTagName("li"));
+    lis.forEach((item, index, array)=>{
+        //设置背景颜色
+        if(index%2===0){
+            item.style.background="blue";
+        }else{
+            item.style.background="black";
+        }
+        //设置自身颜色
+        item._background=item.style.background;
+        //设置悬停背景色
+        item.onmouseover=()=>{
+            item.style.background="yellow";
+        };
+        item.onmouseleave=()=>{
+            item.style.background=item._background;
+        };
+    });
+
+</script>
+</body>
+</html>

@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>开机动画</title>
+    <style>
+        body{
+            overflow: hidden;
+        }
+        .content{
+            width: 322px;
+            position: absolute;
+            right: 0;
+            bottom: 0;
+        }
+        .content span{
+            width: 20px;
+            height: 20px;
+            position: absolute;
+            right: 8px;
+            top: 0;
+        }
+
+    </style>
+</head>
+<body>
+<div class="content">
+    <img src="img/t.jpg" alt="">
+    <img src="img/b.jpg" alt="">
+    <span></span>
+</div>
+<script>
+    const contentElement = document.getElementsByClassName("content")[0];
+    const spanElement = document.getElementsByTagName("span")[0];
+
+    //测试, 设置点击事件
+    spanElement.onclick = ()=>{
+        styleAnimation(contentElement, {"bottom":"-150px", "right":"-"+contentElement.offsetWidth+"px"});
+    };
+
+
+    /**
+     * 给函数设置动画属性
+     * @param {Object} element 需要设置动画的元素
+     * @param {Object} attribute 需要设置的属性集合 JSON
+     */
+    function styleAnimation(element, attribute){
+        //存放所有属性、值、定时器的数组
+        let _array=[];
+        //获取元素的属性名和值
+        for(let _name in attribute){
+            //获取当前属性和值并存放
+            let arr = new Array(4);
+            arr[0]=_name;
+            arr[1]=attribute[_name];
+            if((typeof attribute[_name])==="string"){
+                arr[2]="px";
+            }else{
+                arr[2]="";
+            }
+            _array.push(arr);
+        }
+
+        setIntervalWidthArray(element, true, _array[0], 0, _array);
+        // _array.forEach((item, index, array)=>{
+        //     setIntervalWidthArray(element, false,item, index, array);
+        // });
+
+        /**
+         * 该方法根据传入的数组参数对元素设置缓动动画,同时可对当前的调用执行递归
+         * @param {Object} element 需要设置动画的元素
+         * @param {boolean} isCallee 是否需要进行递归 true 表示需要
+         * @param {Object} item 需要设置的某一项属性
+         * @param {number} index 当前项在数组中的索引
+         * @param {Array} array 所有需设置属性的数组
+         */
+        function setIntervalWidthArray(element, isCallee, item, index, array){
+            let step;
+            item[3] = setInterval(()=>{
+                let now;
+                let target;
+                //判断当前元素是否为opacity
+                if(item[0] === "opacity"){
+                    //获取元素当前值
+                    now = parseFloat(getElementCSS(element, null, item[0]));
+                    target = parseFloat( item[1]);
+                    //获得 step 值
+                    if(now < target ){
+                        step = Math.ceil(1000* target - 1000* now);
+                    }else if(now > target ){
+                        step = Math.floor(1000* target - 1000* now);
+                    }
+                    step /= 5000;
+                }else if(item[0] === "zIndex"){
+                    element.style[item[0]] = item[1]+item[2];
+                }
+                else{
+                    //获取元素当前值
+                    now = parseInt(getElementCSS(element, null, item[0]));
+                    target = parseInt( item[1]);
+                    //获得 step 值
+                    if(now < target ){
+                        step = Math.ceil((target - now) / 10);
+                    }else if(now > target ){
+                        step = Math.floor((target - now) / 10);
+                    }
+                }
+                if(now !== target ){
+                    //还未达到目标时设置是属性
+                    element.style[item[0]] = (now+step)+item[2];
+                    console.log((now+step)+item[2]);
+                }else{
+                    //到达目标，清除定时器
+                    clearInterval(item[3]);
+                    //判断索引是否达到限制,没有则递归调用
+                    if(isCallee &&  index < (array.length-1)){
+                        arguments.callee(element, true, array[++index], index, array);
+                    }
+                }
+            }, 30);
+        }
+    }
+
+    //元素 style 提取工具
+    function getElementCSS(obj, fObj, where){
+        if(window.getComputedStyle){
+            return window.getComputedStyle(obj, fObj)[where];
+        }else{
+            return obj.currentStyle[where];
+        }
+    }
+</script>
+</body>
+</html>

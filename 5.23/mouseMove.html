@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>鼠标拖拽事件</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+            list-style: none;
+        }
+        body{
+            width: 100%;
+            height: 100%;
+        }
+        #box{
+            width: 100px;
+            height: 100px;
+            background: skyblue;
+            position: absolute;
+        }
+    </style>
+</head>
+<body>
+<div id="box"></div>
+<script>
+    //TODO： 事件监听 => 当鼠标离开指定区域后，会导致事件无法监听到， 导致出错
+
+    const box = document.getElementById("box");
+    //变量：鼠标是否按下
+    let isMouseDown = false;
+
+    //设置鼠标按下事件
+    box.onmousedown = ()=>{
+        isMouseDown =true;
+    };
+    //判断当鼠标离开box后，鼠标松开时，重置鼠标事件
+    window.onmouseup = ()=>{
+        if(isMouseDown){
+            isMouseDown = false;
+        }
+    };
+    //当鼠标按着离开
+    //鼠标移动事件
+    window.onmousemove = ()=>{
+        //判断鼠标是否按下
+        if(isMouseDown){
+            let _ev = event || window.event;
+            //获得坐标进行移动
+            box.style.left = (_ev.pageX - box.offsetHeight/2)+"px";
+            box.style.top = (_ev.pageY - box.offsetHeight/2)+"px";
+        }
+    };
+
+    //方法： 返回event对象中关于page的x、y位置坐标
+    function getPage(event){
+        return obj={
+            "pageY":event.pageY || event.clientY + document.documentElement.scrollTop,
+            "pageX":event.pageX || event.clientX + document.documentElement.scrollLeft
+        }
+    }
+
+</script>
+</body>
+</html>

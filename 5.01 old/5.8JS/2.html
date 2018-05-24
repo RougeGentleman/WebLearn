@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        .container{
+            width: 220px;
+            height: 250px;
+            margin: 0 auto;
+        }
+        .bottom{
+            width: 220px;
+            height: 30px;
+            text-align: center;
+        }
+
+    </style>
+</head>
+<body>
+<div class="container">
+    <img src="img/1.jpg" alt="">
+    <div class="bottom">
+        <input id="left" type="button" value="左">
+        <input id="right" type="button" value="右">
+        <input id="start" type="button" value="开始">
+        <input id="stop" type="button" value="停止">
+    </div>
+</div>
+<script>
+    //控制按钮
+    var left=document.getElementById("left");
+    var right=document.getElementById("right");
+    var start=document.getElementById("start");
+    var end=document.getElementById("stop");
+    //显示图片元素
+    var imgElement=document.getElementsByTagName("img")[0];
+
+    //图片的索引
+    var picIndex=0;
+    //图片自动播放定时器
+    var timer=null;
+
+    //图片地址
+    var picArray=["../5.8JS/img/1.jpg", "../5.8JS/img/2.jpg", "../5.8JS/img/3.jpg", "../5.8JS/img/4.jpg",
+        "../5.8JS/img/5.jpg", "../5.8JS/img/6.jpg", "../5.8JS/img/7.jpg", "../5.8JS/img/8.jpg"];
+
+    //left按钮点击函数
+    left.onclick=leftClickEvent;
+    function leftClickEvent(){
+        picIndex--;
+        if(picIndex < 0){
+            picIndex=picArray.length-1;
+        }
+        //设置图片
+        imgElement.setAttribute("src", picArray[picIndex]);
+    }
+
+    //右按钮点击函数
+    right.onclick=rightClickEvent;
+    function rightClickEvent(){
+        picIndex++;
+        if(picIndex >= picArray.length){
+            picIndex = 0;
+        }
+        //设置图片
+        imgElement.setAttribute("src", picArray[picIndex]);
+    }
+
+    //开始按钮点击函数
+    start.onclick=startClickEvent;
+    function startClickEvent(){
+        //清除定时器干扰
+        clearInterval(timer);
+        timer = setInterval(()=>{
+            //直接调用右点击函数
+            rightClickEvent();
+        }, 200);
+    }
+
+    //停止按钮函数
+    end.onclick=()=>{
+        clearInterval(timer);
+    }
+
+
+</script>
+</body>
+</html>

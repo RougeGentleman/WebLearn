@@ -1,0 +1,44 @@
+<!DOCTYPE <!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>switch</title>
+    <script>
+        //第一题
+        do{
+            var user=prompt("请输入用户名");
+            var password=prompt("请输入密码");
+        }
+        while(user!="admin" && password!="88888");
+        alert("登录成功");
+
+        //第二题
+        var n="";
+        var index=1;
+        while(index<=50){
+            if(index%2!=0){
+                n+=index+", ";
+            }
+            index++;
+        }
+        console.log(n);
+
+        //第三题
+        var _index=1;
+        var _n=parseInt(Math.random()*9);
+        while(_index<=3){
+            var _s=prompt("题3：请输入数字");
+            if(_s>_n){
+                alert("你赢了");
+                break;
+            }
+            _index++;
+        }
+        
+    </script>
+</head>
+<body>
+    
+</body>
+</html>
